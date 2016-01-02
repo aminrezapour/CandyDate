@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thorsh</title>
+  <title>Thorsh: Better Manage Your Dates</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width", "initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+     <ul class="nav nav-tabs">
+       <li class="pull-left"><%= link_to "Home", root_path %></li>
+       <li class="pull-right"><%= link_to "About", about_path %></li>
+     </ul>
+
+     <%= yield %>
+  </div>
 
 </body>
 </html>
