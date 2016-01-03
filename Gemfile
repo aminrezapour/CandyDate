@@ -43,3 +43,5 @@ gem 'figaro', '1.0'
 gem 'devise'
 # To add user authorization and policies
 gem 'pundit'
+# Facebook login
+gem 'omniauth-facebook'
