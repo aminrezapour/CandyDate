@@ -1,0 +1,6 @@
+<% @moods.each do |m| %>
+  <div id="amin4">
+    <%= link_to m.name, user_mood_path(@user, m) %>
+  </div>
+<% end %>
+<!-- how to change link color, how make them white black alternatively -->
