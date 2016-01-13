@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104062152) do
+ActiveRecord::Schema.define(version: 20160113025223) do
+
+  create_table "moods", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "moods_suggestions", id: false, force: :cascade do |t|
+    t.integer "mood_id"
+    t.integer "suggestion_id"
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "photo"
+    t.string   "ext_link"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "suggestions", ["user_id"], name: "index_suggestions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
