@@ -1,0 +1,16 @@
+<h1><%= @mood.name %></h1>
+
+<% @suggestions.each do |s| %>
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="media-head">
+        <%= link_to s.name, user_suggestion_path(current_user, s) %>
+      </div>
+      <div class="media-body">
+        <small><%= s.description %></small>
+      </div>
+    </div>
+
+  </div>
+<% end %>

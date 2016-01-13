@@ -1,0 +1,26 @@
+<h1>Edit Suggestion</h1>
+
+<div>
+  <p>Take this into consideration</p>
+  <ul>
+    <li>try to be original</li>
+    <li>Don't be afraid to add more description.</li>
+  </ul>
+</div>
+
+<%= form_for [@user, @suggestion] do |f| %>
+     <div class="form-group">
+       <%= f.label :name %>
+       <%= f.text_field :name, class: 'form-control', placeholder: "What do you have in mind?" %>
+     </div>
+     <div class="form-group">
+       <%= f.label :description %>
+       <%= f.text_area :description, rows: 4, class: 'form-control', placeholder: "Why do you suggest this?" %>
+     </div>
+     <div class="field">
+       <%= collection_check_boxes(:suggestion, :mood_ids, @moods, :id, :name) %>
+     </div>
+     <div class="form-group">
+       <%= f.submit "Save", class: 'btn btn-success' %>
+     </div>
+<% end %>
