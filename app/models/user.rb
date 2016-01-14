@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :suggestions, dependent: :destroy
   has_many :availables, dependent: :destroy
+  has_many :datings
+  has_many :appointments, through: :datings
 
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

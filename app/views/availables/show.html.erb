@@ -1,2 +1,7 @@
-<h1>Availables#show</h1>
-<p>Find me in app/views/availables/show.html.erb</p>
+<h1><%= @user.name %></h1>
+<h1><%= @suggestion.name %></h1>
+<h1><%= @available.slot %></h1>
+
+<div class="media-head">
+  <%= link_to "Confirm", user_suggestion_available_appointments_path(@user, @suggestion, @available), method: :post, class: "btn btn-success" %>
+</div>

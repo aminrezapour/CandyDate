@@ -5,7 +5,7 @@
 
     <div class="col-md-4">
       <div class="media-head">
-        <%= link_to s.name, user_suggestion_path(current_user, s) %>
+        <%= link_to s.name, user_suggestion_path(@user, s) %>
       </div>
       <div class="media-body">
         <small><%= s.description %></small>
