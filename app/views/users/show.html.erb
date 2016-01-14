@@ -13,6 +13,24 @@
             <h2 class="media-heading"><%= @user.name %></h2>
           </div>
 
+          <% if @user.telephone.nil? %>
+            <div>
+              <%= form_for @user do |f| %>
+                   <div class="form-group">
+                     <%= f.text_field :telephone, class: 'form-control', placeholder: "enter phone" %>
+                   </div>
+                   <div class="form-group">
+                     <%= f.submit "Save", class: 'btn btn-success' %>
+                   </div>
+              <% end %>
+            </div>
+          <% else %>
+            <div>
+              <h2 class="media-heading"><%= @user.telephone %></h2>
+            </div>
+          <% end %>
+
+
     </div>
 
 </div>
