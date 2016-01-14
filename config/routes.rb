@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'availables/index'
-
-  get 'availables/show'
-
-  get 'availables/new'
-
-  get 'availables/edit'
-
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show] do
