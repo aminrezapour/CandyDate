@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :appointments, except: [:new, :create]
   end
 
+  post "/find_user"  => "users#user_preview"
+
   get 'about' => 'welcome#about'
 
   root 'welcome#index'

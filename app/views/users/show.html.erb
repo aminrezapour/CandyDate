@@ -28,6 +28,12 @@
             <div>
               <h2 class="media-heading"><%= @user.telephone %></h2>
             </div>
+            <div>
+              <%= form_tag("/find_user", method: :post) do %>
+              <%= text_field_tag(:tel, nil, placeholder: "phone number") %>
+              <%= submit_tag("Make a new date") %>
+              <% end %>
+            </div>
           <% end %>
 
 
