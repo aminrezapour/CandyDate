@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113025223) do
+ActiveRecord::Schema.define(version: 20160113202406) do
+
+  create_table "availables", force: :cascade do |t|
+    t.datetime "slot"
+    t.boolean  "taken",      default: false
+    t.integer  "user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "availables", ["user_id"], name: "index_availables_on_user_id"
 
   create_table "moods", force: :cascade do |t|
     t.string   "name"

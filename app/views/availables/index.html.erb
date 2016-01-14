@@ -1,0 +1,19 @@
+<h1>All Availables</h1>
+
+<div>
+  <%= link_to "Add More Free Times", new_user_available_path(current_user), class: 'btn btn-success' %>
+</div>
+
+<% @availables.each do |a| %>
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="media-head">
+        <%= link_to a.slot, edit_user_available_path(current_user, a) %>
+      </div>
+    </div>
+
+    <%= link_to "Delete", [current_user, a], method: :delete, class: 'btn btn-danger' %>
+
+  </div>
+<% end %>
