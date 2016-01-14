@@ -1,0 +1,19 @@
+<h1>New Available</h1>
+
+<div>
+  <p>Take this into consideration</p>
+  <ul>
+    <li>try to add more times and visit this page often</li>
+    <li>when choosing time, enter as you say it.</li>
+  </ul>
+</div>
+
+<%= form_for [@user, @available] do |f| %>
+     <div class="form-group">
+       <%= f.label :slot %>
+       <%= f.text_field :slot, class: 'form-control', placeholder: "something like: monday jan 17 7pm" %>
+     </div>
+     <div class="form-group">
+       <%= f.submit "Save", class: 'btn btn-success' %>
+     </div>
+<% end %>

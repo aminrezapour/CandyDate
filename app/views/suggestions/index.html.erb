@@ -9,14 +9,13 @@
 
     <div class="col-md-4">
       <div class="media-head">
-        <%= link_to s.name, user_suggestion_path(@user, s) %>
+        <%= link_to s.name, edit_user_suggestion_path(current_user, s) %>
       </div>
       <div class="media-body">
         <small><%= s.description %></small>
       </div>
     </div>
 
-    <%= link_to "Edit", edit_user_suggestion_path(current_user, s) %>
     <%= link_to "Delete", [current_user, s], method: :delete, class: 'btn btn-danger' %>
 
   </div>

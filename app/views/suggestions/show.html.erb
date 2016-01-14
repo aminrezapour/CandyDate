@@ -1,2 +1,16 @@
-<h1>Suggestions#show</h1>
-<p>Find me in app/views/suggestions/show.html.erb</p>
+<h1><%= @user.name %></h1>
+<h1><%= @suggestion.name %></h1>
+
+<div>
+  <% @availables.each do |a| %>
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="media-head">
+            <%= link_to a.slot, user_suggestion_available_path(@user, @suggestion, a) %>
+          </div>
+        </div>
+
+      </div>
+  <% end %>
+</div>

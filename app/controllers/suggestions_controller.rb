@@ -1,10 +1,13 @@
 class SuggestionsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user
     @suggestions = @user.suggestions
   end
 
   def show
+    @user = User.find(params[:user_id])
+    @suggestion = Suggestion.find(params[:id])
+    @availables = @user.availables.where(taken: false)
   end
 
   def new
