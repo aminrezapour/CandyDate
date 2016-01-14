@@ -1,0 +1,24 @@
+<h1>All Appointments</h1>
+
+<% @appointments.each do |a| %>
+  <div class="row">
+
+    <div>
+      <%= image_tag a.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
+    </div>
+    <div class="col-md-4">
+      <div class="media-head">
+        <%= a.users.select{|u| u!=@user}.first.name %>
+      </div>
+      <div class="media-body">
+        <small><%= a.suggestion.name %></small>
+      </div>
+      <div class="media-body">
+        <small><%= a.available.slot %></small>
+      </div>
+    </div>
+
+    <%= link_to "Go to this date page", [current_user, a], class: 'btn' %>
+
+  </div>
+<% end %>

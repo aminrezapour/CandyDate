@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113202406) do
+ActiveRecord::Schema.define(version: 20160114162459) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "available_id"
+    t.integer  "suggestion_id"
+    t.string   "recommend"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "appointments", ["available_id"], name: "index_appointments_on_available_id"
+  add_index "appointments", ["suggestion_id"], name: "index_appointments_on_suggestion_id"
 
   create_table "availables", force: :cascade do |t|
     t.datetime "slot"
@@ -22,6 +33,16 @@ ActiveRecord::Schema.define(version: 20160113202406) do
   end
 
   add_index "availables", ["user_id"], name: "index_availables_on_user_id"
+
+  create_table "datings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "appointment_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "datings", ["appointment_id"], name: "index_datings_on_appointment_id"
+  add_index "datings", ["user_id"], name: "index_datings_on_user_id"
 
   create_table "moods", force: :cascade do |t|
     t.string   "name"
