@@ -1,18 +1,19 @@
-<div id="amin2">
-  Enter <b>Her/His</b> Number
-
-  <div class="form-group">
-    <input type="text" class="form-control">
-  </div>
-
-</div>
-
 <div id="amin">
-  <p>
-    Sign In!
-  </p>
+  <h1>Welcome To Thorsh</h1>
+  <small><p>A Better Solution to Manage Your Date Life!</p></small>
+  <div id="amin2">
+    <blockquote class="amin1">
+      Thorsh takes away the hassle of planing a date.
+      It works pretty easy, just sign up with your Facebook account, enter your phone number,
+      enter her/his number, and get to choose the time and the location of your rendezvous.
+      It's a lot of fun, we promise!
+      <br><br>
+      "This is a &beta;eta product."
+    </blockquote>
+  </div>
+  <br>
   <div>
-    <%= link_to "Facebook", user_omniauth_authorize_path(:facebook), id: "amin3" %>
+    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), id: "amin3" %>
   </div>
 
 </div>
