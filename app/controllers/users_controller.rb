@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.find_by_telephone(params[:tel])
     if @user.nil?
       flash[:error] = "Wrong Number"
-      redirect_to root_path
+      redirect_to current_user
     else
       redirect_to "/users/#{@user.id}/moods"
     end
