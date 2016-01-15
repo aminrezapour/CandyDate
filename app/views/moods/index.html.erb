@@ -1,6 +1,30 @@
-<% @moods.each do |m| %>
-  <div id="amin4">
-    <%= link_to m.name, user_mood_path(@user, m) %>
+<%  %>
+  <div>
+    <%= link_to @moods[0].name, user_mood_path(@user, @moods[0]), class: "btn btn-block", id: "amin4" %>
   </div>
-<% end %>
-<!-- how to change link color, how make them white black alternatively -->
+<%  %>
+<%  %>
+  <div>
+    <%= link_to @moods[1].name, user_mood_path(@user, @moods[1]), class: "btn btn-block", id: "amin5" %>
+  </div>
+<%  %>
+<%  %>
+  <div>
+    <%= link_to @moods[2].name, user_mood_path(@user, @moods[2]), class: "btn btn-block", id: "amin4" %>
+  </div>
+<%  %>
+<%  %>
+  <div>
+    <%= link_to @moods[3].name, user_mood_path(@user, @moods[3]), class: "btn btn-block", id: "amin5" %>
+  </div>
+<%  %>
+<%  %>
+  <div>
+    <%= link_to @moods[4].name, user_mood_path(@user, @moods[4]), class: "btn btn-block", id: "amin4" %>
+  </div>
+<%  %>
+<%  %>
+  <div>
+    <%= link_to @moods[5].name, user_mood_path(@user, @moods[5]), class: "btn btn-block", id: "amin5" %>
+  </div>
+<%  %>

@@ -1,16 +1,60 @@
-<h1><%= @mood.name %></h1>
+<div class="row">
 
-<% @suggestions.each do |s| %>
-  <div class="row">
-
-    <div class="col-md-4">
-      <div class="media-head">
-        <%= link_to s.name, user_suggestion_path(@user, s) %>
-      </div>
-      <div class="media-body">
-        <small><%= s.description %></small>
-      </div>
+    <div class="col-xs-2">
+      <ul class="nav nav-pills nav-stacked">
+         <li>
+           <%= link_to user_mood_path(@user,1), class: 'btn' do %>
+             <i class="glyphicon glyphicon-star"> </i>&nbsp;
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,2), class: 'btn' do %>
+             <i class="glyphicon glyphicon-glass"> </i>&nbsp;
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,3), class: 'btn' do %>
+             <i class="glyphicon glyphicon-cutlery"> </i>&nbsp;
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,4), class: 'btn' do %>
+             <i class="glyphicon glyphicon-music"> </i>&nbsp;
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,5), class: 'btn' do %>
+             <i class="glyphicon glyphicon-film"> </i>&nbsp;
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,6), class: 'btn' do %>
+             <i class="glyphicon glyphicon-tree-conifer"> </i>&nbsp;
+           <% end %>
+         </li>
+      </ul>
     </div>
 
-  </div>
-<% end %>
+    <div class="col-xs-10">
+
+      <div id="amin6">
+          <h1 id="amin7"><%= @mood.name %></h1>
+      </div>
+
+      <% @suggestions.each do |s| %>
+            <%= link_to(user_suggestion_path(@user, s), class: "btn btn-block", id: "amin8") do %>
+                <div>
+                  <div>
+                    <h2><%= s.name %></h2>
+                  </div>
+                  <div>
+                    <small><%= s.description %></small>
+                  </div>
+                </div>
+            <% end %>
+
+      <% end %>
+
+    </div>
+
+</div>
