@@ -2,16 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #amin {
-    background-color:black;
+    background-image: url("http://www.couponmachine.in/blog/wp-content/uploads/2015/10/romantic-date-large-msg-136086592641.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    background-size: cover;
     color:white;
     text-align:center;
-    padding-top:100px;
-    padding-bottom:100px;
+    padding-top:10px;
+    padding-bottom:50px;
 }
 
 #amin2 {
+    background-color: rgba(0,0,0,0.5);
     text-align:center;
-    padding:100px 100px 100px 100px;
+    padding:10px 50px 10px 50px;
+}
+
+blockquote.amin1 {
+    margin-bottom: 0px;
 }
 
 #amin3 {
