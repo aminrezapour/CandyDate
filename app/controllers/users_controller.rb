@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     redirect_to(@user) if @user.save
   end
 
+  def user_select
+    
+  end
+
   def user_preview
     @user = User.find_by_telephone(params[:tel])
     if @user.nil?

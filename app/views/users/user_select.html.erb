@@ -1,0 +1,7 @@
+<%= form_tag("/find_user", method: :post) do %>
+  <div>
+    <%= text_field_tag(:tel, nil, placeholder: "phone number", class: "form-control") %>
+
+    <%= submit_tag("Search", class: "btn btn-block btn-primary") %>
+  </div>
+<% end %>
