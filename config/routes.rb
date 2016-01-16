@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :update] do
@@ -15,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   post "/find_user"  => "users#user_preview"
+
+  get "/find_user"  => "users#user_select"
 
   get 'about' => 'welcome#about'
 

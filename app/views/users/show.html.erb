@@ -1,51 +1,56 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-xs-5" id="amin3">
 
-          <div class="media_right">
-            <%= image_tag @user.image, class: 'media-object' %>
+          <div class="pull-right">
+            <%= image_tag @user.image, size: "60x60" %>
           </div>
 
     </div>
 
-    <div class="col-md-6">
+    <div class="col-xs-7" id="amin3">
 
-          <div class="media_left">
-            <h2 class="media-heading"><%= @user.name %></h2>
-          </div>
+          <div class="pull-left">
+            <h2 class="media-heading"><b><%= @user.name %></b></h2>
 
-          <% if @user.telephone.nil? %>
-            <div>
-              <%= form_for @user do |f| %>
-                   <div class="form-group">
-                     <%= f.text_field :telephone, class: 'form-control', placeholder: "enter phone" %>
-                   </div>
-                   <div class="form-group">
-                     <%= f.submit "Save", class: 'btn btn-success' %>
-                   </div>
-              <% end %>
-            </div>
-          <% else %>
-            <div>
-              <h2 class="media-heading"><%= @user.telephone %></h2>
-            </div>
-            <div>
-              <%= form_tag("/find_user", method: :post) do %>
-              <%= text_field_tag(:tel, nil, placeholder: "phone number") %>
-              <%= submit_tag("Make a new date") %>
-              <% end %>
-            </div>
-          <% end %>
+            <% if @user.telephone.nil? %>
+                <%= form_for @user do |f| %>
+                     <div class="form-group">
+                       <%= f.text_field :telephone, class: 'form-control', placeholder: "enter your phone" %>
+                     </div>
+                     <div class="form-group">
+                       <%= f.submit "Save", class: 'btn btn-success' %>
+                     </div>
+                <% end %>
+            <% else %>
+                  <h4 class="media-heading"><%= @user.telephone %></h4>
+            <% end %>
 
+        </div>
 
     </div>
 
 </div>
-<div>
-  <%= link_to "All Suggestions", user_suggestions_path(current_user), class: "btn btn-success" %>
-</div>
-<div>
-  <%= link_to "All Availables", user_availables_path(current_user), class: "btn btn-success" %>
-</div>
-<div>
-  <%= link_to "All Appointments", user_appointments_path(current_user), class: "btn btn-success" %>
-</div>
+
+<% unless @user.telephone.nil? %>
+    <%= link_to find_user_path do %>
+      <div class="row" id="amin4">
+        <h3>Setup a New Date</h3>
+      </div>
+    <% end %>
+<% end %>
+
+<%= link_to user_suggestions_path(current_user) do %>
+  <div class="row" id="amin5">
+    <h3>Places</h3>
+  </div>
+<% end %>
+<%= link_to user_availables_path(current_user) do %>
+  <div class="row" id="amin4">
+    <h3>Open Times</h3>
+  </div>
+<% end %>
+<%= link_to user_appointments_path(current_user) do %>
+  <div class="row" id="amin5">
+    <h3>All Dates</h3>
+  </div>
+<% end %>

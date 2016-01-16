@@ -2,8 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #amin4 {
-    text-align:center;
-    padding:20px;
-    border-bottom: solid;
-    border-width: 2px;
+    background-color: black;
+    color: white;
+}
+
+#amin5 {
+  background-color: white;
+  color: black;
+}
+
+#amin6 {
+  background-color: black;
+  color: white;
+  padding: 50px;
+  text-align: center;
+}
+
+#amin7 {
+  margin: 0px;
+}
+
+#amin8 {
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  color: black;
+}
+
+#amin9 {
+  padding-left: 10px;
+  background-color: white;
 }

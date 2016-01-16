@@ -1,16 +1,60 @@
-<h1><%= @user.name %></h1>
-<h1><%= @suggestion.name %></h1>
+<div class="row">
 
-<div>
-  <% @availables.each do |a| %>
-      <div class="row">
+    <div class="col-xs-2" id="amin6">
+      <ul class="nav nav-pills nav-stacked">
+         <li>
+           <%= link_to user_mood_path(@user,1), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-star"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,2), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-glass"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,3), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-cutlery"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,4), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-music"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,5), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-film"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_mood_path(@user,6), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-tree-conifer"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+      </ul>
+    </div>
 
-        <div class="col-md-4">
-          <div class="media-head">
-            <%= link_to a.slot, user_suggestion_available_path(@user, @suggestion, a) %>
-          </div>
-        </div>
+    <div class="col-xs-10">
 
+      <div class="row" id="amin4">
+          <h3><small>with: </small><%= @user.name %></h3>
       </div>
-  <% end %>
+
+      <div class="row" id="amin9">
+          <h3><small>where: </small><%= @suggestion.name %></h3>
+      </div>
+
+        <% @availables.each do |a| %>
+            <%= link_to(user_suggestion_available_path(@user, @suggestion, a), class: "btn btn-block", id: "aminn9") do %>
+                <div>
+                  <div>
+                      <h2><%= a.slot.inspect %></h2>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+
+    </div>
+
 </div>
