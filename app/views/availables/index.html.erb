@@ -1,19 +1,37 @@
-<h1>All Availables</h1>
+<div class="row">
 
-<div>
-  <%= link_to "Add More Free Times", new_user_available_path(current_user), class: 'btn btn-success' %>
-</div>
-
-<% @availables.each do |a| %>
-  <div class="row">
-
-    <div class="col-md-4">
-      <div class="media-head">
-        <%= link_to a.slot, edit_user_available_path(current_user, a) %>
-      </div>
+    <div class="col-xs-2" id="amin6">
+      <ul class="nav nav-pills nav-stacked">
+         <li>
+           <%= link_to new_user_available_path(current_user), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+      </ul>
     </div>
 
-    <%= link_to "Delete", [current_user, a], method: :delete, class: 'btn btn-danger' %>
+    <div class="col-xs-10">
 
-  </div>
-<% end %>
+      <div class="row" id="amin4">
+          <h3>Open Times</h3>
+      </div>
+
+      <% @availables.each do |a| %>
+            <%= link_to(edit_user_available_path(current_user, a)) do %>
+                <div class="row">
+                  <div class="col-xs-10" id="amin8">
+                    <h3><%= a.slot.inspect %></h3>
+                  </div>
+                  <%= link_to [current_user, a], method: :delete do %>
+                    <div class="col-xs-2" id="amin11">
+                      <h5>Delete</h5>
+                    </div>
+                  <% end %>
+                </div>
+            <% end %>
+
+      <% end %>
+
+    </div>
+
+</div>

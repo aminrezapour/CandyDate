@@ -22,7 +22,7 @@
  }
 
  #amin {
-     background-image: url("http://www.couponmachine.in/blog/wp-content/uploads/2015/10/romantic-date-large-msg-136086592641.jpg");
+     background-image: url("http://mac.h-cdn.co/assets/15/17/480x720/gallery-1429824112-movie-night-in.jpg");
      background-repeat: no-repeat;
      background-position: center;
      background-color: black;
@@ -43,7 +43,7 @@
  }
 
  #amin3 {
-   padding: 5px;
+   padding: 7px 5px 5px 8px;
  }
 
  #amin4 {
@@ -63,10 +63,6 @@
  #amin6 {
    padding: 0px;
    background-color: white;
-   border-right-style: solid;
-   border-right-width: 1px;
-   border-right-radius: 0px;
-   border-right-color: black;
  }
 
  #amin7 {
@@ -81,7 +77,11 @@
    color: black;
    text-align: left;
    padding: 20px;
-   border: none;
+   border-left-style: solid;
+   border-left-width: 1px;
+   border-left-color: black;
+   border-left-radius: 0px;
+   border-bottom: none;
  }
 
  #amin9 {
@@ -96,4 +96,33 @@
    color: white;
    text-align: center;
    padding: 20px;
+ }
+
+ #amin11 {
+   background-color: red;
+   color: white;
+   padding: 25px 20px 25px 5px;
+ }
+
+ #amin12 {
+   background-color: green;
+   padding: 20px 20px 17px 20px;
+   border-radius: 0px;
+ }
+
+ #amin13 {
+   border-bottom-style: solid;
+   border-bottom-width: 1px;
+   border-bottom-color: black;
+   border-bottom-radius: 0px;
+ }
+
+ #amin14 {
+   padding: 20px;
+   text-align: right;
+ }
+
+ #amin15 {
+   padding: 5px 5px 4px 10px;
+   text-align: left;
  }

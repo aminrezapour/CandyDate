@@ -1,19 +1,35 @@
-<h1>Edit Available</h1>
-
-<div>
-  <p>Take this into consideration</p>
-  <ul>
-    <li>try to add more times and visit this page often</li>
-    <li>when choosing time, enter as you say it.</li>
-  </ul>
-</div>
-
 <%= form_for [@user, @available] do |f| %>
-     <div class="form-group">
-       <%= f.label :slot %>
-       <%= f.text_field :slot, class: 'form-control', placeholder: "just say it" %>
-     </div>
-     <div class="form-group">
-       <%= f.submit "Save", class: 'btn btn-success' %>
-     </div>
+
+    <div class="row">
+
+        <div class="col-xs-2" id="amin6">
+          <ul class="nav nav-pills nav-stacked">
+             <li id="amin12">
+                 <%= button_tag(type: "submit", class: "btn", id: "amin12") do %>
+                      <i class="glyphicon glyphicon-ok"></i>
+                  <% end %>
+             </li>
+          </ul>
+        </div>
+
+        <div class="col-xs-10">
+
+          <div class="row" id="amin4">
+              <h3>New Open Time</h3>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-10">
+                <div class="form-group">
+                  <%= f.label :Time %>
+                  <%= f.text_field :slot, class: 'form-control', placeholder: "something like: monday jan 17 7pm" %>
+                </div>
+
+              </div>
+          </div>
+
+        </div>
+
+    </div>
+
 <% end %>
