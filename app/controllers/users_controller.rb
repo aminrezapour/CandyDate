@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def user_select
-    
+    # render user_select.html.erb
   end
 
   def user_preview

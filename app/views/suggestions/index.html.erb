@@ -1,22 +1,38 @@
-<h1>All Suggestions</h1>
+<div class="row">
 
-<div>
-  <%= link_to "New Suggestion", new_user_suggestion_path(current_user), class: 'btn btn-success' %>
-</div>
-
-<% @suggestions.each do |s| %>
-  <div class="row">
-
-    <div class="col-md-4">
-      <div class="media-head">
-        <%= link_to s.name, edit_user_suggestion_path(current_user, s) %>
-      </div>
-      <div class="media-body">
-        <small><%= s.description %></small>
-      </div>
+    <div class="col-xs-2" id="amin6">
+      <ul class="nav nav-pills nav-stacked">
+         <li>
+           <%= link_to new_user_suggestion_path(current_user), id: "amin7" do %>
+             <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
+           <% end %>
+         </li>
+      </ul>
     </div>
 
-    <%= link_to "Delete", [current_user, s], method: :delete, class: 'btn btn-danger' %>
+    <div class="col-xs-10">
 
-  </div>
-<% end %>
+      <div class="row" id="amin4">
+          <h3>Places</h3>
+      </div>
+
+      <% @suggestions.each do |s| %>
+            <%= link_to(edit_user_suggestion_path(current_user, s)) do %>
+                <div class="row">
+                  <div class="col-xs-10" id="amin8">
+                    <h3><%= s.name %></h3>
+                    <small><%= s.description %></small>
+                  </div>
+                  <%= link_to [current_user, s], method: :delete do %>
+                    <div class="col-xs-2" id="amin11">
+                      <h5>Delete</h5>
+                    </div>
+                  <% end %>
+                </div>
+            <% end %>
+
+      <% end %>
+
+    </div>
+
+</div>

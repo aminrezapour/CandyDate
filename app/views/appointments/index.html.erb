@@ -1,24 +1,73 @@
-<h1>All Appointments</h1>
+<div class="row">
+  <div class="col-xs-2" id="amin6">
+    <ul class="nav nav-pills nav-stacked">
+       <li>
+         <% unless @user.telephone.nil? %>
+             <%= link_to find_user_path, id: "amin7" do %>
+               <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
+             <% end %>
+         <% end %>
+       </li>
+    </ul>
+  </div>
+
+  <div class="col-xs-10">
+
+        <div class="row" id="amin4">
+          <h3>Dates</h3>
+        </div>
+
+        <% @appointments.each do |a| %>
+              <%= link_to(user_appointment_path(current_user, a)) do %>
+                  <div class="row">
+
+                    <div class="col-xs-10" id="amin8">
+                      <div class="row">
+
+                          <div class="col-xs-3">
+                            <%= image_tag a.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
+                          </div>
+
+                          <div class="col-xs-9">
+                            <div class="media-head">
+                              <%= a.users.select{|u| u!=@user}.first.name %>
+                              (<%= a.users.select{|u| u!=@user}.first.telephone %>)
+                            </div>
+                            <div class="media-body">
+                              <small><%= a.suggestion.name %></small>
+                            </div>
+                            <div class="media-body">
+                              <small><%= a.available.slot.inspect %></small>
+                            </div>
+                          </div>
+
+                      </div>
+                    </div>
+
+                    <%= link_to [current_user, a], method: :delete do %>
+                      <div class="col-xs-2" id="amin11">
+                        <h5>Cancel Date </h5>
+                      </div>
+                    <% end %>
+
+                  </div>
+              <% end %>
+
+        <% end %>
+
+  </div>
+
+</div>
+
+
+
+
 
 <% @appointments.each do |a| %>
   <div class="row">
 
-    <div>
-      <%= image_tag a.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
-    </div>
-    <div class="col-md-4">
-      <div class="media-head">
-        <%= a.users.select{|u| u!=@user}.first.name %>
-      </div>
-      <div class="media-body">
-        <small><%= a.suggestion.name %></small>
-      </div>
-      <div class="media-body">
-        <small><%= a.available.slot %></small>
-      </div>
-    </div>
 
-    <%= link_to "Go to this date page", [current_user, a], class: 'btn' %>
+
 
   </div>
 <% end %>
