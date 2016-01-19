@@ -45,3 +45,5 @@ gem 'devise'
 gem 'pundit'
 # Facebook login
 gem 'omniauth-facebook'
+# Twilio
+gem 'twilio-ruby'
