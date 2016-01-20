@@ -18,7 +18,10 @@ class SuggestionsController < ApplicationController
 
   def create
     @user = current_user
-    @suggestion = @user.suggestions.build(suggestion_params)
+    @suggestion = Suggestion.find_or_create_by(suggestion_params)
+
+    @suggestion.users << @user
+    @suggestion.mood_ids = params[:suggestion][:mood_ids]
 
     redirect_to user_suggestions_path(@user) if @suggestion.save
   end
@@ -45,6 +48,6 @@ class SuggestionsController < ApplicationController
   private
 
   def suggestion_params
-    params.require(:suggestion).permit(:name, :description, :mood_ids => [])
+    params.require(:suggestion).permit(:name, :description)
   end
 end
