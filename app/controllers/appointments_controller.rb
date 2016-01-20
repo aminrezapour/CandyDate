@@ -19,6 +19,9 @@ class AppointmentsController < ApplicationController
     @available.taken = true
     @available.save
 
+    @appointment.save
+    @appointment.send_text_message
+
     redirect_to user_appointments_path(@user2) if @appointment.save
   end
 
