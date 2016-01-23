@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119211738) do
+ActiveRecord::Schema.define(version: 20160114162459) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "available_id"
     t.integer  "suggestion_id"
-    t.string   "recommend"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -44,35 +43,19 @@ ActiveRecord::Schema.define(version: 20160119211738) do
   add_index "datings", ["appointment_id"], name: "index_datings_on_appointment_id"
   add_index "datings", ["user_id"], name: "index_datings_on_user_id"
 
-  create_table "moods", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "moods_suggestions", id: false, force: :cascade do |t|
-    t.integer "mood_id"
-    t.integer "suggestion_id"
-  end
-
-  create_table "suggestings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "suggestion_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "suggestings", ["suggestion_id"], name: "index_suggestings_on_suggestion_id"
-  add_index "suggestings", ["user_id"], name: "index_suggestings_on_user_id"
-
   create_table "suggestions", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "photo"
     t.string   "ext_link"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "taken",       default: false
+    t.boolean  "flag",        default: false
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
+
+  add_index "suggestions", ["user_id"], name: "index_suggestions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

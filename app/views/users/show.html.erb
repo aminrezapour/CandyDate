@@ -3,7 +3,7 @@
     <ul class="nav nav-pills nav-stacked">
        <li>
          <% unless @user.telephone.nil? %>
-             <%= link_to find_user_path, id: "amin7" do %>
+             <%= link_to user_find_user_path(@user), id: "amin7" do %>
                <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
              <% end %>
          <% end %>

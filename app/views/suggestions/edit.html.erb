@@ -29,13 +29,15 @@
                   <%= f.label :description %>
                   <%= f.text_area :description, rows: 4, class: 'form-control', placeholder: "Why do you suggest this? Include the neighborhood." %>
                 </div>
-              </div>
-          </div>
 
-          <div class="row">
-              <div class="col-xs-10">
-                <%= collection_check_boxes(:suggestion, :mood_ids, @moods, :id, :name) %>
+                <div class="form-group">
+                      <%= f.label :flag, class: 'checkbox' do %>
+                        <%= f.check_box :flag %> Click here if it's a concert or an event.
+                      <% end %>
+                </div>
+
               </div>
+
           </div>
 
         </div>
