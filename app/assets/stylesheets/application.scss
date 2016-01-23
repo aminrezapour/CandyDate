@@ -22,15 +22,12 @@
  }
 
  #amin {
-     background-image: url("http://mac.h-cdn.co/assets/15/17/480x720/gallery-1429824112-movie-night-in.jpg");
-     background-repeat: no-repeat;
-     background-position: center;
      background-color: black;
      background-size: cover;
      color:white;
      text-align:center;
      padding-top:10px;
-     padding-bottom:50px;
+     padding-bottom:500px;
  }
 
  #amin2 {
@@ -125,4 +122,10 @@
  #amin15 {
    padding: 5px 5px 4px 10px;
    text-align: left;
+ }
+
+ #amin16 {
+   background-color: rgb(51, 204, 255);
+   color: white;
+   padding: 25px 20px 25px 5px;
  }

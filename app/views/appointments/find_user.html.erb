@@ -1,4 +1,4 @@
-<%= form_tag("/find_user", method: :post) do %>
+<%= form_tag(user_suggestion_index_path(current_user), method: :get) do %>
   <div>
     <%= text_field_tag(:tel, nil, placeholder: "phone number", class: "form-control") %>
 

@@ -1,7 +1,7 @@
 class SuggestionsController < ApplicationController
   def index
     @user = current_user
-    @suggestions = @user.suggestions
+    @suggestions = @user.suggestions.where(taken: false)
   end
 
   def show
@@ -13,15 +13,11 @@ class SuggestionsController < ApplicationController
   def new
     @user = current_user
     @suggestion = Suggestion.new
-    @moods = Mood.all
   end
 
   def create
     @user = current_user
-    @suggestion = Suggestion.find_or_create_by(suggestion_params)
-
-    @suggestion.users << @user
-    @suggestion.mood_ids = params[:suggestion][:mood_ids]
+    @suggestion = @user.suggestions.build(suggestion_params)
 
     redirect_to user_suggestions_path(@user) if @suggestion.save
   end
@@ -29,7 +25,6 @@ class SuggestionsController < ApplicationController
   def edit
     @user = current_user
     @suggestion = Suggestion.find(params[:id])
-    @moods = Mood.all
   end
 
   def update
@@ -48,6 +43,6 @@ class SuggestionsController < ApplicationController
   private
 
   def suggestion_params
-    params.require(:suggestion).permit(:name, :description)
+    params.require(:suggestion).permit(:name, :description, :flag)
   end
 end

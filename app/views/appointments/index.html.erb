@@ -3,7 +3,7 @@
     <ul class="nav nav-pills nav-stacked">
        <li>
          <% unless @user.telephone.nil? %>
-             <%= link_to find_user_path, id: "amin7" do %>
+             <%= link_to user_find_user_path, id: "amin7" do %>
                <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
              <% end %>
          <% end %>
@@ -37,7 +37,7 @@
                               <small><%= a.suggestion.name %></small>
                             </div>
                             <div class="media-body">
-                              <small><%= a.available.slot.inspect %></small>
+                              <small><%= a.available.slot.strftime("%A %b, %e at %l%P") %></small>
                             </div>
                           </div>
 
@@ -58,16 +58,3 @@
   </div>
 
 </div>
-
-
-
-
-
-<% @appointments.each do |a| %>
-  <div class="row">
-
-
-
-
-  </div>
-<% end %>

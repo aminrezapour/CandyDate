@@ -1,0 +1,32 @@
+<div class="row">
+
+    <div class="col-xs-2" id="amin6">
+      <ul class="nav nav-pills nav-stacked">
+
+      </ul>
+    </div>
+
+    <div class="col-xs-10">
+
+      <div class="row" id="amin4">
+          <h3><small>with: </small><%= @user.name %></h3>
+      </div>
+
+      <div class="row" id="amin9">
+          <h3><small>where: </small><%= @suggestion.name %></h3>
+      </div>
+
+      <div class="row" id="amin10">
+          <h3><small>time: </small><%= @available.slot.strftime("%A %b, %e at %l%P") %></h3>
+      </div>
+
+      <%= form_for [current_user, @appointment] do |f| %>
+        <%= hidden_field_tag(:available, @available.id) %>
+        <%= hidden_field_tag(:suggestion, @suggestion.id) %>
+        <%= hidden_field_tag(:other_user, @user.id) %>
+        <%= f.submit("Confirm", class: "btn btn-block btn-primary", id: "amin4") %>
+      <% end %>
+
+    </div>
+
+</div>
