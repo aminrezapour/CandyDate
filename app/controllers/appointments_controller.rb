@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
     @user = current_user
-    @appointments = @user.appointments
+    @appointments = @user.appointments.order(slot: :desc)
   end
 
   def find_user
@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
   def available_index
     @user = User.find(params[:other_user])
     @suggestion = Suggestion.find(params[:suggestion])
-    @availables = @user.availables.where(taken: false)
+    @availables = @user.availables.order(slot: :asc)
   end
 
   def new
@@ -32,12 +32,12 @@ class AppointmentsController < ApplicationController
     @user1 = User.find(params[:other_user])
     @user2 = current_user
 
-    @appointment = Appointment.create!(available_id: params[:available], suggestion_id: params[:suggestion])
+    slot = Available.find(params[:available]).slot
+
+    @appointment = Appointment.create!(slot: slot, suggestion_id: params[:suggestion])
     @appointment.users << [@user1, @user2]
 
-    @available = @appointment.available
-    @available.taken = true
-    @available.save
+    Available.find(params[:available]).destroy
 
     @suggestion = @appointment.suggestion
     if @suggestion.flag
@@ -45,7 +45,7 @@ class AppointmentsController < ApplicationController
       @suggestion.save
     end
 
-    @appointment.send_text_message
+    # @appointment.send_text_message
 
     redirect_to user_appointments_path(@user2) if @appointment.save
   end

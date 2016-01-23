@@ -47,3 +47,5 @@ gem 'pundit'
 gem 'omniauth-facebook'
 # Twilio
 gem 'twilio-ruby'
+# Whenever to automate rake tasks
+gem 'whenever', :require => false

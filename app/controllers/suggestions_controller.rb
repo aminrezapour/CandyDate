@@ -5,9 +5,6 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @suggestion = Suggestion.find(params[:id])
-    @availables = @user.availables.where(taken: false)
   end
 
   def new

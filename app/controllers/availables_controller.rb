@@ -1,7 +1,7 @@
 class AvailablesController < ApplicationController
   def index
     @user = current_user
-    @availables = @user.availables.where(taken: false)
+    @availables = @user.availables.order(slot: :asc)
   end
 
   def show

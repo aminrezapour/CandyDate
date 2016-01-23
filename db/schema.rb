@@ -14,21 +14,19 @@
 ActiveRecord::Schema.define(version: 20160114162459) do
 
   create_table "appointments", force: :cascade do |t|
-    t.integer  "available_id"
+    t.datetime "slot"
     t.integer  "suggestion_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "appointments", ["available_id"], name: "index_appointments_on_available_id"
   add_index "appointments", ["suggestion_id"], name: "index_appointments_on_suggestion_id"
 
   create_table "availables", force: :cascade do |t|
     t.datetime "slot"
-    t.boolean  "taken",      default: false
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "availables", ["user_id"], name: "index_availables_on_user_id"
