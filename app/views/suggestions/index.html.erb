@@ -23,7 +23,7 @@
                     <h3><%= s.name %></h3>
                     <small><%= s.description %></small>
                   </div>
-                  <%= link_to [current_user, s], method: :update do %>
+                  <%= link_to edit_user_suggestion_path(current_user, s) do %>
                     <div class="col-xs-2" id="amin16">
                       <h5>Edit</h5>
                     </div>
