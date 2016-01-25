@@ -2,6 +2,11 @@ class AppointmentsController < ApplicationController
   def index
     @user = current_user
     @appointments = @user.appointments.order(slot: :asc)
+
+    respond_to do |format|
+        format.html
+        format.js
+    end
   end
 
   def find_user
