@@ -1,0 +1,34 @@
+<%= link_to(user_appointment_path(current_user, appointment)) do %>
+    <div class="row">
+
+      <div class="col-xs-10" id="amin8">
+        <div class="row">
+
+            <div class="col-xs-3">
+              <%= image_tag appointment.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
+            </div>
+
+            <div class="col-xs-9">
+              <div class="media-head">
+                <%= appointment.users.select{|u| u!=@user}.first.name %>
+                (<%= appointment.users.select{|u| u!=@user}.first.telephone %>)
+              </div>
+              <div class="media-body">
+                <small><%= appointment.suggestion.name %></small>
+              </div>
+              <div class="media-body">
+                <small><%= appointment.slot.strftime("%A %b, %e at %l%P") %></small>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <%= link_to [current_user, appointment], method: :delete do %>
+        <div class="col-xs-2" id="amin11">
+          <h5>Cancel Date </h5>
+        </div>
+      <% end %>
+
+    </div>
+<% end %>

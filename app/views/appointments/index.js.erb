@@ -1,0 +1,9 @@
+$('#all-appointments').click(function() {
+  $('#appointments-index').html("<%= j render @appointments %>");
+});
+$('#upcoming-appointments').click(function() {
+  $('#appointments-index').html("<%= j render @appointments.upcoming %>");
+});
+$('#past-appointments').click(function() {
+  $('#appointments-index').html("<%= j render @appointments.past %>");
+});

@@ -8,6 +8,15 @@
              <% end %>
          <% end %>
        </li>
+       <li>
+         <%= link_to "All Dates", "#", id: "all-appointments", remote: true %>
+       </li>
+       <li>
+         <%= link_to "Upcoming Dates", "#", id: "upcoming-appointments", remote: true %>
+       </li>
+       <li>
+         <%= link_to "Past Dates", "#", id: "past-appointments", remote: true %>
+       </li>
     </ul>
   </div>
 
@@ -17,43 +26,9 @@
           <h3>Dates</h3>
         </div>
 
-        <% @appointments.each do |a| %>
-              <%= link_to(user_appointment_path(current_user, a)) do %>
-                  <div class="row">
-
-                    <div class="col-xs-10" id="amin8">
-                      <div class="row">
-
-                          <div class="col-xs-3">
-                            <%= image_tag a.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
-                          </div>
-
-                          <div class="col-xs-9">
-                            <div class="media-head">
-                              <%= a.users.select{|u| u!=@user}.first.name %>
-                              (<%= a.users.select{|u| u!=@user}.first.telephone %>)
-                            </div>
-                            <div class="media-body">
-                              <small><%= a.suggestion.name %></small>
-                            </div>
-                            <div class="media-body">
-                              <small><%= a.slot.strftime("%A %b, %e at %l%P") %></small>
-                            </div>
-                          </div>
-
-                      </div>
-                    </div>
-
-                    <%= link_to [current_user, a], method: :delete do %>
-                      <div class="col-xs-2" id="amin11">
-                        <h5>Cancel Date </h5>
-                      </div>
-                    <% end %>
-
-                  </div>
-              <% end %>
-
-        <% end %>
+        <div id='appointments-index'>
+          <%= render @appointments %>
+        </div>
 
   </div>
 
