@@ -4,6 +4,9 @@ class Appointment < ActiveRecord::Base
   has_many :datings
   has_many :users, through: :datings
 
+  scope :upcoming, -> {where("slot > ?", DateTime.now)}
+  scope :past, -> {where("slot < ?", DateTime.now)}
+
   def send_text_message
     users = self.users;
 

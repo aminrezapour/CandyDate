@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
     @user = current_user
-    @appointments = @user.appointments.order(slot: :desc)
+    @appointments = @user.appointments.order(slot: :asc)
   end
 
   def find_user
