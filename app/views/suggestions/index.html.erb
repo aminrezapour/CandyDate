@@ -16,22 +16,7 @@
           <h3>Places</h3>
       </div>
 
-      <% @suggestions.each do |s| %>
-            <%= link_to(edit_user_suggestion_path(current_user, s)) do %>
-                <div class="row">
-                  <div class="col-xs-10" id="amin8">
-                    <h3><%= s.name %></h3>
-                    <small><%= s.description %></small>
-                  </div>
-                  <%= link_to edit_user_suggestion_path(current_user, s) do %>
-                    <div class="col-xs-2" id="amin16">
-                      <h5>Edit</h5>
-                    </div>
-                  <% end %>
-                </div>
-            <% end %>
-
-      <% end %>
+      <%= render @suggestions %>
 
     </div>
 
