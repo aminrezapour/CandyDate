@@ -24,10 +24,12 @@
         </div>
       </div>
 
-      <%= link_to [current_user, appointment], method: :delete do %>
-        <div class="col-xs-2" id="amin11">
-          <h5>Cancel Date </h5>
-        </div>
+      <% if appointment.slot > DateTime.now %>
+        <%= link_to [current_user, appointment], method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <div class="col-xs-2" id="amin11">
+            <h5>Cancel Date </h5>
+          </div>
+        <% end %>
       <% end %>
 
     </div>

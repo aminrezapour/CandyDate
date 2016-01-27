@@ -28,7 +28,7 @@
 
       <% end %> -->
 
-      <%= form_tag user_appointments_path(current_user, Appointment.new) do |f| %>
+      <%= form_tag(user_available_index_path(current_user), method: :get) do |f| %>
         <%= hidden_field_tag(:other_user, @user.id) %>
 
         <% @suggestions.each do |s| %>
@@ -40,8 +40,7 @@
               </div>
             </div>
         <% end %>
-        <%= select_tag "available", options_from_collection_for_select(@availables, "id", "slot"), prompt: "Select availability" %>
-        <%= submit_tag "Select" %>
+        <%= submit_tag "Choose When", class: "btn btn-block btn-primary", id: "amin4" %>
       <% end %>
 
     </div>
