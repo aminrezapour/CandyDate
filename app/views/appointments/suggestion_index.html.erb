@@ -12,7 +12,7 @@
           <h3><small>with: </small><%= @user.name %></h3>
       </div>
 
-      <%= form_tag(user_available_index_path(current_user), method: :get) do %>
+      <!-- <%= form_tag(user_available_index_path(current_user), method: :get) do %>
         <%= hidden_field_tag(:other_user, @user.id) %>
 
         <% @suggestions.each do |s| %>
@@ -26,6 +26,22 @@
           </div>
         <% end %>
 
+      <% end %> -->
+
+      <%= form_tag user_appointments_path(current_user, Appointment.new) do |f| %>
+        <%= hidden_field_tag(:other_user, @user.id) %>
+
+        <% @suggestions.each do |s| %>
+            <%= check_box_tag 'suggestion_id', "#{s.id}" %>
+            <div class="row">
+              <div class="col-xs-10" id="amin8">
+                <h3><%= s.name %></h3>
+                <small><%= s.description %></small>
+              </div>
+            </div>
+        <% end %>
+        <%= select_tag "available", options_from_collection_for_select(@availables, "id", "slot"), prompt: "Select availability" %>
+        <%= submit_tag "Select" %>
       <% end %>
 
     </div>

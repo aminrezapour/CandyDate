@@ -15,6 +15,7 @@ class AppointmentsController < ApplicationController
   def suggestion_index
     @user = User.find_by_telephone(params[:tel])
     @suggestions = @user.suggestions.where(taken: false)
+    @availables = @user.availables.order(slot: :asc)
   end
 
   def available_index
@@ -39,7 +40,10 @@ class AppointmentsController < ApplicationController
 
     slot = Available.find(params[:available]).slot
 
-    @appointment = Appointment.create!(slot: slot, suggestion_id: params[:suggestion])
+    suggestion = Suggestion.find(params[:suggestion_id])
+
+    @appointment = Appointment.create!(slot: slot, suggestion: suggestion)
+
     @appointment.users << [@user1, @user2]
 
     Available.find(params[:available]).destroy
