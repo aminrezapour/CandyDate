@@ -16,7 +16,7 @@
           <h3><small>at: </small><%= @suggestion.name %></h3>
       </div>
 
-      <%= form_tag(new_user_appointment_path(current_user), method: :get) do %>
+      <!-- <%= form_tag(new_user_appointment_path(current_user), method: :get) do %>
         <%= hidden_field_tag(:other_user, @user.id) %>
         <%= hidden_field_tag(:suggestion, @suggestion.id) %>
 
@@ -30,6 +30,21 @@
           </div>
         <% end %>
 
+      <% end %> -->
+
+      <%= form_tag(new_user_appointment_path(current_user), method: :get) do |f| %>
+        <%= hidden_field_tag(:other_user, @user.id) %>
+        <%= hidden_field_tag(:suggestion, @suggestion.id) %>
+
+        <% @availables.each do |a| %>
+            <%= check_box_tag 'available_id', "#{a.id}" %>
+            <div class="row">
+              <div class="col-xs-10" id="amin8">
+                <h3><%= a.slot.strftime("%A %b, %e at %l%P") %></h3>
+              </div>
+            </div>
+        <% end %>
+        <%= submit_tag "Proceed", class: "btn btn-block btn-primary", id: "amin4" %>
       <% end %>
 
     </div>

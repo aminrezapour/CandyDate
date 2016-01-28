@@ -1,0 +1,13 @@
+<%= link_to(edit_user_suggestion_path(current_user, suggestion)) do %>
+    <div class="row">
+      <div class="col-xs-10" id="amin8">
+        <h3><%= suggestion.name %></h3>
+        <small><%= suggestion.description %></small>
+      </div>
+      <%= link_to edit_user_suggestion_path(current_user, suggestion) do %>
+        <div class="col-xs-2" id="amin16">
+          <h5>Edit</h5>
+        </div>
+      <% end %>
+    </div>
+<% end %>

@@ -16,21 +16,7 @@
           <h3>Open Times</h3>
       </div>
 
-      <% @availables.each do |a| %>
-            <%= link_to(edit_user_available_path(current_user, a)) do %>
-                <div class="row">
-                  <div class="col-xs-10" id="amin8">
-                    <h3><%= a.slot.strftime("%A %b, %e at %l%P") %></h3>
-                  </div>
-                  <%= link_to [current_user, a], method: :delete do %>
-                    <div class="col-xs-2" id="amin11">
-                      <h5>Delete</h5>
-                    </div>
-                  <% end %>
-                </div>
-            <% end %>
-
-      <% end %>
+      <%= render @availables %>
 
     </div>
 
