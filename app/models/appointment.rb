@@ -27,8 +27,13 @@ class Appointment < ActiveRecord::Base
 
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
-      :to => [number1_to_send_to, number2_to_send_to],
-      :body => "#{user1.name} and #{user2.name} are having a date on #{on_this_date} at #{loc}. Manage your dates online at Thorsh(beta)!"
+      :to => [number1_to_send_to],
+      :body => "You have a date with #{user2.name} on #{on_this_date} at #{loc}. Manage your dates online at www.candydate.me"
+    )
+    @twilio_client.account.sms.messages.create(
+      :from => "+1#{twilio_phone_number}",
+      :to => [number2_to_send_to],
+      :body => "You have a date with #{user1.name} on #{on_this_date} at #{loc}. Manage your dates online at www.candydate.me"
     )
   end
 
