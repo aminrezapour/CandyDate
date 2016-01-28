@@ -50,7 +50,7 @@ class AppointmentsController < ApplicationController
       @suggestion.save
     end
 
-    # @appointment.send_text_message
+    @appointment.send_text_message
 
     redirect_to user_appointments_path(@user2) if @appointment.save
   end

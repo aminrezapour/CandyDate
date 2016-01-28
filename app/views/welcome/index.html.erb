@@ -1,6 +1,16 @@
 <div id="amin">
-  <h1>THORSH</h1>
+  <h1>CandyDate</h1>
   <small><p>We Get You on a Date!</p></small>
   <br>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+  <p style="text-align:justify;padding:10px 50px 5px 50px;">
+    Thank you for trying CandyDate. If this is your first time here, most probably
+    you have been referred by one of our existing users. Go ahead and login, save your
+    phone number and make a new date by searching her/his phone number.
+  </p>
+  <p style="text-align:justify;padding:5px 50px 10px 50px;">
+    If you like the magic, spread the love and let your friends know. Your experience
+    and your feedback is extremely important to us at this early stage of this
+    amazing product. We love to hear from you, please see the "About" section.
+  </p>
+  <%= link_to "Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
 </div>
