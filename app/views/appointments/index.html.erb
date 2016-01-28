@@ -9,13 +9,13 @@
          <% end %>
        </li>
        <li>
-         <%= link_to "All Dates", "#", id: "all-appointments", remote: true %>
+         <%= link_to "All", "#", id: "all-appointments", remote: true %>
        </li>
        <li>
-         <%= link_to "Upcoming Dates", "#", id: "upcoming-appointments", remote: true %>
+         <%= link_to "Future", "#", id: "upcoming-appointments", remote: true %>
        </li>
        <li>
-         <%= link_to "Past Dates", "#", id: "past-appointments", remote: true %>
+         <%= link_to "Past", "#", id: "past-appointments", remote: true %>
        </li>
     </ul>
   </div>
@@ -26,9 +26,15 @@
           <h3>Dates</h3>
         </div>
 
-        <div id='appointments-index'>
-          <%= render @appointments %>
-        </div>
+        <% if @appointments.count < 1 %>
+            <div class="row" id="amin11">
+              Click on the + button to make your first date!
+            </div>
+        <% else %>
+            <div id='appointments-index'>
+              <%= render @appointments %>
+            </div>
+        <% end %>
 
   </div>
 

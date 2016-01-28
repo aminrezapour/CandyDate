@@ -1,5 +1,5 @@
-<%= link_to(user_appointment_path(current_user, appointment)) do %>
-    <div class="row">
+<div class="row">
+  <%= link_to("#") do %>
 
       <div class="col-xs-10" id="amin8">
         <div class="row">
@@ -8,29 +8,29 @@
               <%= image_tag appointment.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
             </div>
 
-            <div class="col-xs-9">
-              <div class="media-head">
-                <%= appointment.users.select{|u| u!=@user}.first.name %>
-                (<%= appointment.users.select{|u| u!=@user}.first.telephone %>)
-              </div>
-              <div class="media-body">
-                <small><%= appointment.suggestion.name %></small>
-              </div>
-              <div class="media-body">
-                <small><%= appointment.slot.strftime("%A %b, %e at %l%P") %></small>
-              </div>
+            <div class="col-xs-6">
+                <h3><%= appointment.users.select{|u| u!=@user}.first.name %></h3>
             </div>
 
         </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <small><%= appointment.suggestion.name %></small>
+            </div>
+            <div class="col-xs-6">
+                <small><%= appointment.slot.strftime("%A %b, %e at %l%P") %></small>
+            </div>
+        </div>
       </div>
 
-      <% if appointment.slot > DateTime.now %>
-        <%= link_to [current_user, appointment], method: :delete, data: {confirm: 'Are you sure?'} do %>
-          <div class="col-xs-2" id="amin11">
-            <h5>Cancel Date </h5>
-          </div>
-        <% end %>
-      <% end %>
+  <% end %>
 
-    </div>
-<% end %>
+  <% if appointment.slot > DateTime.now %>
+    <%= link_to [current_user, appointment], method: :delete, data: {confirm: 'Are you sure?'} do %>
+      <div class="col-xs-2" id="amin11">
+        <h5>Cancel</h5>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
