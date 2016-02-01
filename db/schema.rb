@@ -15,9 +15,14 @@ ActiveRecord::Schema.define(version: 20160114162459) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "slot"
+    t.text     "days_user_1"
+    t.text     "days_user_2"
+    t.text     "all_suggestions"
+    t.string   "tel_user_1"
+    t.string   "tel_user_2"
     t.integer  "suggestion_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "appointments", ["suggestion_id"], name: "index_appointments_on_suggestion_id"

@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :suggestions
-  has_many :availables, dependent: :destroy
   has_many :datings
   has_many :appointments, through: :datings
 

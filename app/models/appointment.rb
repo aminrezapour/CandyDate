@@ -1,8 +1,9 @@
 class Appointment < ActiveRecord::Base
-  belongs_to :available
   belongs_to :suggestion
   has_many :datings
   has_many :users, through: :datings
+  serialize :days_user_1, Array
+  serialize :days_user_2, Array
 
   scope :upcoming, -> {where("slot > ?", DateTime.now)}
   scope :past, -> {where("slot < ?", DateTime.now)}

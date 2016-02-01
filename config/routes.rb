@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update] do
     resources :suggestions
-    resources :availables
     resources :appointments
 
     get "/available_index"  => "appointments#available_index"
