@@ -24,7 +24,7 @@
                 <%= "Hi #{current_user.name}!" %>
             <% end %>
             <% if current_user.telephone.nil? %>
-                <%= form_for @user, class: 'navbar-form navbar-left', role: "search" do |f| %>
+                <%= form_for current_user, class: 'navbar-form navbar-left', role: "search" do |f| %>
                   <div class="form-group">
                     <%= f.text_field :telephone, class: 'form-control', placeholder: "enter your phone" %>
                   </div>

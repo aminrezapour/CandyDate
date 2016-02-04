@@ -1,0 +1,43 @@
+<div class="row">
+
+    <div class="col-xs-2" id="amin6">
+      <ul class="nav nav-pills nav-stacked">
+        <li>
+          <%= link_to user_appointments_path(@user), id: "amin7" do %>
+            <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to user_suggestions_path(@user), id: "amin7" do %>
+            <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to user_invitations_path(@user), id: "amin7" do %>
+            <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-10">
+
+      <div class="row" id="amin4">
+        <h3>Invitations</h3>
+      </div>
+      <div class="row" id="amin9">
+        <h3>New Invitation</h3>
+      </div>
+
+      Start by searching her/his phone number
+      <%= form_tag(new_user_invitation_path(current_user), method: :get) do %>
+          <%= text_field_tag(:tel, nil, placeholder: "e.g. 2132715224") %>
+
+          <div class="row">
+            <%= submit_tag "Search", class: "btn btn-block", id: "amin12" %>
+          </div>
+      <% end %>
+
+    </div>
+
+</div>

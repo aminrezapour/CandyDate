@@ -1,10 +1,11 @@
 class SuggestionsController < ApplicationController
   def index
     @user = current_user
-    @suggestions = @user.suggestions.where(taken: false)
+    @suggestions = @user.suggestions
   end
 
   def show
+    # more will be added
   end
 
   def new
@@ -21,7 +22,7 @@ class SuggestionsController < ApplicationController
 
   def edit
     @user = current_user
-    @suggestion = Suggestion.find(params[:id])
+    @suggestion = @user.suggestions.find(params[:id])
   end
 
   def update
@@ -40,6 +41,6 @@ class SuggestionsController < ApplicationController
   private
 
   def suggestion_params
-    params.require(:suggestion).permit(:name, :description, :flag)
+    params.require(:suggestion).permit(:name, :description, :event, :public)
   end
 end

@@ -1,13 +1,21 @@
 <div class="row">
   <div class="col-xs-2" id="amin6">
     <ul class="nav nav-pills nav-stacked">
-       <li>
-         <% unless @user.telephone.nil? %>
-             <%= link_to user_find_user_path(@user), id: "amin7" do %>
-               <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
-             <% end %>
-         <% end %>
-       </li>
+      <li>
+        <%= link_to user_appointments_path(@user), id: "amin7" do %>
+          <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_suggestions_path(@user), id: "amin7" do %>
+          <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_invitations_path(@user), id: "amin7" do %>
+          <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
+        <% end %>
+      </li>
     </ul>
   </div>
 
@@ -23,11 +31,12 @@
           <h3>Places</h3>
         </div>
       <% end %>
-      <%= link_to user_availables_path(current_user) do %>
+      <%= link_to user_invitations_path(current_user) do %>
         <div class="row" id="amin4">
-          <h3>Times</h3>
+          <h3>Invitations</h3>
         </div>
       <% end %>
-    </div>
+
+  </div>
 
 </div>

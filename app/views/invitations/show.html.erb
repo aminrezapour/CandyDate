@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-xs-2" id="amin6">
+    <ul class="nav nav-pills nav-stacked">
+      <li>
+        <%= link_to user_appointments_path(@user), id: "amin7" do %>
+          <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_suggestions_path(@user), id: "amin7" do %>
+          <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_invitations_path(@user), id: "amin7" do %>
+          <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-xs-10">
+
+    <div class="row" id="amin4">
+      <h3>Invitation</h3>
+    </div>
+
+    <div class="row">
+        <h3>Name be added too <%= @invitation.invitee_tel %></h3>
+    </div>
+
+    <div class="row">
+        <%= form_tag [@user, @appointment] do %>
+
+          <%= hidden_field_tag(:invitation_id, @invitation.id) %>
+
+          <h3>Suggestions for this invitation</h3>
+
+            <% @suggestions.each do |s| %>
+                <%= check_box_tag("suggestion_id", s.id) %>
+                <h4><%= s.name %></h4>
+                <p><%= s.description %></p>
+            <% end %>
+
+          <h3>In the next 7 days, choose the days that you are free</h3>
+          <% @availables.each do |a| %>
+              <%= check_box_tag("available_id[]", a) %>
+              <%= a.strftime("%A") %>
+          <% end %>
+
+          <div class="row">
+            <%= submit_tag("Create a Date", class: "btn btn-block", id: "amin12") %>
+          </div>
+
+        <% end %>
+
+    </div>
+
+  </div>
+
+</div>

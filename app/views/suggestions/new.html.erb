@@ -31,10 +31,17 @@
                 </div>
 
                 <div class="form-group">
-                      <%= f.label :flag, class: 'checkbox' do %>
-                        <%= f.check_box :flag %> Check here if it's a concert or an event.
+                      <%= f.label :event, class: 'checkbox' do %>
+                        <%= f.check_box :event %> Check here if it's a concert or an event.
                       <% end %>
                 </div>
+
+                <div class="form-group">
+                      <%= f.label :public, class: 'checkbox' do %>
+                        <%= f.check_box :public %> Public
+                      <% end %>
+                </div>
+
               </div>
           </div>
 

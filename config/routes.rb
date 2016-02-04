@@ -4,12 +4,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update] do
     resources :suggestions
-    resources :availables
     resources :appointments
+    resources :invitations
 
-    get "/available_index"  => "appointments#available_index"
-    get "/suggestion_index"  => "appointments#suggestion_index"
-    get "/find_user"  => "appointments#find_user"
+    get "/find_user"  => "invitations#find_user"
   end
 
   get 'about' => 'welcome#about'

@@ -18,19 +18,11 @@
                 <small><%= appointment.suggestion.name %></small>
             </div>
             <div class="col-xs-6">
-                <small><%= appointment.slot.strftime("%A %b, %e at %l%P") %></small>
+                <small><%= appointment.day.strftime("%A") %></small>
             </div>
         </div>
       </div>
 
-  <% end %>
-
-  <% if appointment.slot > DateTime.now %>
-    <%= link_to [current_user, appointment], method: :delete, data: {confirm: 'Are you sure?'} do %>
-      <div class="col-xs-2" id="amin11">
-        <h5>Cancel</h5>
-      </div>
-    <% end %>
   <% end %>
 
 </div>

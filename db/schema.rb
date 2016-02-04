@@ -11,25 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114162459) do
+ActiveRecord::Schema.define(version: 20160203063255) do
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "slot"
+    t.date     "day"
     t.integer  "suggestion_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "appointments", ["suggestion_id"], name: "index_appointments_on_suggestion_id"
-
-  create_table "availables", force: :cascade do |t|
-    t.datetime "slot"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "availables", ["user_id"], name: "index_availables_on_user_id"
 
   create_table "datings", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,13 +32,43 @@ ActiveRecord::Schema.define(version: 20160114162459) do
   add_index "datings", ["appointment_id"], name: "index_datings_on_appointment_id"
   add_index "datings", ["user_id"], name: "index_datings_on_user_id"
 
+  create_table "invitations", force: :cascade do |t|
+    t.string   "invitee_tel"
+    t.string   "days_inviter"
+    t.string   "invitee_name"
+    t.boolean  "confirmed",    default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "invitings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "invitation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "invitings", ["invitation_id"], name: "index_invitings_on_invitation_id"
+  add_index "invitings", ["user_id"], name: "index_invitings_on_user_id"
+
+  create_table "suggestings", force: :cascade do |t|
+    t.integer  "suggestion_id"
+    t.integer  "invitation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "suggestings", ["invitation_id"], name: "index_suggestings_on_invitation_id"
+  add_index "suggestings", ["suggestion_id"], name: "index_suggestings_on_suggestion_id"
+
   create_table "suggestions", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "photo"
     t.string   "ext_link"
     t.boolean  "taken",       default: false
-    t.boolean  "flag",        default: false
+    t.boolean  "event",       default: false
+    t.boolean  "public",      default: true
     t.integer  "user_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

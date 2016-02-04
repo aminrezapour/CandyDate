@@ -1,18 +1,22 @@
 <div class="row">
   <%= link_to(edit_user_suggestion_path(current_user, suggestion)) do %>
-    <div class="col-xs-8" id="amin8">
-      <h3><%= suggestion.name %></h3>
+    <div class="col-xs-10" id="amin8">
+      <h3>
+        <%= suggestion.name %>
+        <% unless suggestion.public %>
+          <i class="glyphicon glyphicon-lock"> </i>&nbsp;
+        <% end %>
+        <% if suggestion.event %>
+          <i class="glyphicon glyphicon-tags"> </i>&nbsp;
+        <% end %>
+      </h3>
       <small><%= suggestion.description %></small>
     </div>
+
   <% end %>
   <%= link_to edit_user_suggestion_path(current_user, suggestion) do %>
     <div class="col-xs-2" id="amin16">
       <h5>Edit</h5>
-    </div>
-  <% end %>
-  <%= link_to [current_user, suggestion], method: :delete, data: {confirm: 'Are you sure?'} do %>
-    <div class="col-xs-2" id="amin11">
-      <h5>Delete</h5>
     </div>
   <% end %>
 </div>
