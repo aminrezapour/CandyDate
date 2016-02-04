@@ -2,11 +2,9 @@ class Appointment < ActiveRecord::Base
   belongs_to :suggestion
   has_many :datings
   has_many :users, through: :datings
-  serialize :days_user_1, Array
-  serialize :days_user_2, Array
 
-  scope :upcoming, -> {where("slot > ?", DateTime.now)}
-  scope :past, -> {where("slot < ?", DateTime.now)}
+  scope :upcoming, -> {where("day > ?", Date.today)}
+  scope :past, -> {where("day < ?", Date.today)}
 
   def send_text_message
     users = self.users;

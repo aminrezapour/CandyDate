@@ -49,3 +49,5 @@ gem 'omniauth-facebook'
 gem 'twilio-ruby'
 # Whenever to automate rake tasks
 gem 'whenever', :require => false
+# jQuery UI
+gem 'jquery-ui-rails'

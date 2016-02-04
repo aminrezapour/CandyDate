@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
     @user = current_user
-    @appointments = @user.appointments.order(slot: :asc)
+    @appointments = @user.appointments.order(day: :asc)
 
     respond_to do |format|
         format.html
@@ -9,53 +9,45 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def find_user
-  end
-
-  def suggestion_index
-    @user = User.find_by_telephone(params[:tel])
-    @suggestions = @user.suggestions.where(taken: false)
-  end
-
-  def available_index
-    @user = User.find(params[:other_user])
-    @suggestion = Suggestion.find(params[:suggestion_id])
-    @availables = @user.availables.order(slot: :asc)
-  end
-
-  def new
-    @user = User.find(params[:other_user])
-    @suggestion = Suggestion.find(params[:suggestion])
-    @available = Available.find(params[:available_id])
-    @appointment = Appointment.new
-  end
-
   def show
   end
 
   def create
-    @user1 = User.find(params[:other_user])
-    @user2 = current_user
-    slot = Available.find(params[:available]).slot
-    suggestion = Suggestion.find(params[:suggestion])
+    @invitation = Invitation.find(params[:invitation_id])
+    @suggestion = Suggestion.find(params[:suggestion_id])
+    @invitee = current_user
+    @inviter = @invitation.users.first
+    days_inviter = @invitation.days_inviter
+    days_invitee = params[:available_id]
+    @appointment = @inviter.appointments.create!
+    @appointment.users << @invitee
+    @appointment.suggestion = @suggestion
 
-    @appointment = Appointment.create!(slot: slot, suggestion: suggestion)
-    @appointment.users << [@user1, @user2]
-
-    Available.find(params[:available]).destroy
-
-    @suggestion = @appointment.suggestion
-    if @suggestion.flag
-      @suggestion.taken = true
-      @suggestion.save
+    for d in days_inviter do
+      if days_invitee.include?(d)
+        day = d
+        break
+      end
     end
 
-    @appointment.send_text_message
+    # if no overlap, some function must be triggered
+    unless day.nil?
+      @appointment.day = day
+    end
 
-    redirect_to user_appointments_path(@user2) if @appointment.save
+    if @appointment.save
+      # a message sent to both numbers
+      @invitation.confirmed = true
+      @invitation.save
+      flash[:notice] = "Congratulations! You both are free on #{day}"
+      redirect_to user_appointments_path(@invitee)
+    end
   end
 
   def edit
+  end
+
+  def update
   end
 
   def destroy

@@ -9,6 +9,11 @@
                       <i class="glyphicon glyphicon-ok"></i>
                   <% end %>
              </li>
+             <li id="amin11">
+               <%= link_to [@user, @suggestion], method: :delete, data: {confirm: 'Are you sure?'} do %>
+                 <i class="glyphicon glyphicon-remove"></i>
+               <% end %>
+             </li>
           </ul>
         </div>
 
@@ -31,8 +36,14 @@
                 </div>
 
                 <div class="form-group">
-                      <%= f.label :flag, class: 'checkbox' do %>
-                        <%= f.check_box :flag %> Click here if it's a concert or an event.
+                      <%= f.label :event, class: 'checkbox' do %>
+                        <%= f.check_box :event %> Click here if it's a concert or an event.
+                      <% end %>
+                </div>
+
+                <div class="form-group">
+                      <%= f.label :public, class: 'checkbox' do %>
+                        <%= f.check_box :public %> Public
                       <% end %>
                 </div>
 

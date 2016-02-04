@@ -1,0 +1,14 @@
+<div class="row">
+  <%= link_to(user_invitation_path(current_user, invitation)) do %>
+    <div class="col-xs-10" id="amin8">
+      <h3>
+        Name be added too <%= invitation.invitee_tel %>
+      </h3>
+    </div>
+  <% end %>
+  <%= link_to edit_user_invitation_path(current_user, invitation) do %>
+    <div class="col-xs-2" id="amin16">
+      <h5>Edit</h5>
+    </div>
+  <% end %>
+</div>
