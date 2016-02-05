@@ -10,6 +10,8 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @appointment = @user.appointments.find(params[:id])
   end
 
   def create

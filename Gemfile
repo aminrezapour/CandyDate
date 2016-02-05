@@ -51,3 +51,5 @@ gem 'twilio-ruby'
 gem 'whenever', :require => false
 # jQuery UI
 gem 'jquery-ui-rails'
+# simple calendar
+gem "simple_calendar", "~> 2.0"

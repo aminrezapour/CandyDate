@@ -32,19 +32,22 @@
         <% end %>
 
         <div class="row">
-          <div class="col-xs-4">
+          <div class="col-xs-3">
+            <%= link_to "Calendar", "#", id: "calendar-view", remote: true %>
+          </div>
+          <div class="col-xs-3">
             <%= link_to "All", "#", id: "all-appointments", remote: true %>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-3">
             <%= link_to "Future", "#", id: "upcoming-appointments", remote: true %>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-3">
             <%= link_to "Past", "#", id: "past-appointments", remote: true %>
           </div>
         </div>
 
         <div id='appointments-index'>
-          <%= render @appointments %>
+          <%= render partial: 'appointments/calendar', locals: {appointments: @appointments, user: @user} %>
         </div>
 
   </div>
