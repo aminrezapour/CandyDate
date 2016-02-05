@@ -1,3 +1,6 @@
+$('#calendar-view').click(function() {
+  $('#appointments-index').html("<%= j render partial: 'appointments/calendar', locals: {appointments: @appointments, user: @user} %>");
+});
 $('#all-appointments').click(function() {
   $('#appointments-index').html("<%= j render @appointments %>");
 });

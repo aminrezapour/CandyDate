@@ -1,0 +1,12 @@
+<%= month_calendar(attribute: :day, events: appointments) do |date, appointments| %>
+  <%= date.strftime("%-d") %>
+  <% appointments.each do |a| %>
+    <% u = a.users.select{|u| u!=user}.first %>
+    <%= link_to user_appointment_path(user, a) do %>
+      <div>
+        <%= image_tag u.image, size: "50x50" %><br>
+        <%= u.name %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
