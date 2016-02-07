@@ -17,10 +17,11 @@ class AppointmentsController < ApplicationController
   def create
     @invitation = Invitation.find(params[:invitation_id])
     @suggestion = Suggestion.find(params[:suggestion_id])
+    # a user can't make an appointment with himself
     @invitee = current_user
     @inviter = @invitation.users.first
     days_inviter = @invitation.days_inviter
-    days_invitee = params[:available_id]
+    days_invitee = params[:availables_id].split
     @appointment = @inviter.appointments.create!
     @appointment.users << @invitee
     @appointment.suggestion = @suggestion
