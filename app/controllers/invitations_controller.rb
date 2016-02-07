@@ -49,7 +49,8 @@ class InvitationsController < ApplicationController
 
   def create
     @inviter = current_user
-    @invitation = @inviter.invitations.create!
+    @invitation = Invitation.new
+    @invitation.users << @inviter
     invitee_tel = params[:invitee_tel]
     @invitation.invitee_tel = invitee_tel
     if User.find_by_telephone(invitee_tel)

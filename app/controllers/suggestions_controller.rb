@@ -15,9 +15,15 @@ class SuggestionsController < ApplicationController
 
   def create
     @user = current_user
-    @suggestion = @user.suggestions.build(suggestion_params)
+    @suggestion = @user.suggestions.new(suggestion_params)
 
-    redirect_to user_suggestions_path(@user) if @suggestion.save
+    if @suggestion.save
+      flash[:notice] = "Suggestion saved successfully."
+      redirect_to user_suggestions_path(@user)
+    else
+      flash[:alert] = "Suggestion failed to save."
+      render :new
+    end
   end
 
   def edit
