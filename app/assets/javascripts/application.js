@@ -18,7 +18,38 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $("#availables").bind("mousedown", function(e) {
+  $("#available-days").bind("mousedown", function(e) {
     e.metaKey = true;
-  }).selectable();
+  }).selectable({
+    stop : function () {
+      var results = "";
+      $(".ui-selected.day").each(function () {
+        results += $(this).attr('id') + " ";
+      });
+      $("#days-result").html("<input type='hidden' name='availables_id' id='availables_id' value='"+results+"' />");
+    }
+  });
+});
+
+$(document).ready(function() {
+  $("#invitation-suggestions").bind("mousedown", function(e) {
+    e.metaKey = true;
+  }).selectable({
+    stop : function () {
+      var results = "";
+      $(".ui-selected.location").each(function () {
+        results += $(this).attr('id') + " ";
+      });
+      $("#suggestion-result").html("<input type='hidden' name='suggestions_id' id='suggestions_id' value='"+results+"' />");
+    }
+  });
+});
+
+$(document).ready(function() {
+  $("#invitation-suggestion").selectable({
+    stop : function () {
+      var result = $(".ui-selected.location").attr('id');
+      $("#suggestion-result").html("<input type='hidden' name='suggestion_id' id='suggestion_id' value='"+result+"' />");
+    }
+  });
 });

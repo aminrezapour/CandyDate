@@ -55,12 +55,15 @@ class InvitationsController < ApplicationController
     if User.find_by_telephone(invitee_tel)
       @invitee = User.find_by_telephone(invitee_tel)
       @invitation.users << @invitee
+      @invitation.invitee_name = @invitee.name
+    else
+      @invitation.invitee_name = params[:invitee_name]
     end
-    suggestions_id = params[:suggestion_id]
+    suggestions_id = params[:suggestions_id].split
     for id in suggestions_id
       @invitation.suggestions << Suggestion.find(id)
     end
-    @invitation.days_inviter = params[:available_id]
+    @invitation.days_inviter = params[:availables_id].split
 
     # txt message to be added
 
