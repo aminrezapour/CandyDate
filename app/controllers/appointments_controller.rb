@@ -17,9 +17,14 @@ class AppointmentsController < ApplicationController
   def create
     @invitation = Invitation.find(params[:invitation_id])
     @suggestion = Suggestion.find(params[:suggestion_id])
-    # a user can't make an appointment with himself
+
     @invitee = current_user
     @inviter = @invitation.users.first
+    if @inviter == @invitee
+      flash[:alert] = "You can't make a date with yourself"
+      redirect_to user_invitation_path(current_user, @invitation)
+      return
+    end
     days_inviter = @invitation.days_inviter
     days_invitee = params[:availables_id].split
     @appointment = @inviter.appointments.create!

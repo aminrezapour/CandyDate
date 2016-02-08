@@ -50,18 +50,20 @@
           <div id="available-days">
 
             <h3>In the next 7 days, choose the days that you are free</h3>
-            <% @availables.each do |a| %>
-              <%= content_tag :div, class: "btn btn-default day", id: a do %>
-                <%= a.strftime("%A") %>
+              <% @availables.each do |a| %>
+                  <%= content_tag :div, class: "btn btn-default day", id: a do %>
+                    <%= a.strftime("%A") %>
+                  <% end %>
               <% end %>
-            <% end %>
 
           </div>
           <div id="days-result"></div>
 
-          <div class="row">
-            <%= submit_tag("Create a Date", class: "btn btn-block", id: "amin12") %>
-          </div>
+          <% if @invitation.users.first != current_user %>
+            <div class="row">
+              <%= submit_tag("Create a Date", class: "btn btn-block save", id: "amin12") %>
+            </div>
+          <% end %>
 
         <% end %>
 

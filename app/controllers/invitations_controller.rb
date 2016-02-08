@@ -31,8 +31,11 @@ class InvitationsController < ApplicationController
     @inviter_suggestions = @inviter.suggestions.where(taken: false)
 
     @invitee_tel = params[:tel]
-    if User.find_by_telephone(@invitee_tel)
-      @invitee = User.find_by_telephone(@invitee_tel)
+    @invitee = User.find_by_telephone(@invitee_tel)
+    if @invitee && @invitee == @inviter
+      flash[:error] = "You can't ask yourself out."
+      redirect_to user_find_user_path(@inviter)
+    elsif @invitee
       @invitee_suggestions = @invitee.suggestions.where(public: true).where(taken: false)
     end
 
@@ -49,11 +52,12 @@ class InvitationsController < ApplicationController
 
   def create
     @inviter = current_user
-    @invitation = @inviter.invitations.create!
+    @invitation = Invitation.new
+    @invitation.users << @inviter
     invitee_tel = params[:invitee_tel]
     @invitation.invitee_tel = invitee_tel
-    if User.find_by_telephone(invitee_tel)
-      @invitee = User.find_by_telephone(invitee_tel)
+    @invitee = User.find_by_telephone(invitee_tel)
+    if @invitee
       @invitation.users << @invitee
       @invitation.invitee_name = @invitee.name
     else
@@ -69,6 +73,9 @@ class InvitationsController < ApplicationController
 
     if @invitation.save
       flash[:notice] = "Invitation created successfully, a text message was sent to #{invitee_tel}"
+      redirect_to user_invitations_path(@inviter)
+    else
+      flash[:alert] = "Invitation failed to create."
       redirect_to user_invitations_path(@inviter)
     end
   end
