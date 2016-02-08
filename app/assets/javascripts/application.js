@@ -72,3 +72,22 @@ $(document).on('page:load', function() {
       }
     });
 });
+
+
+
+
+$(document).ready(function (){
+    updateSubmit();
+    $('#suggestion-result').on('change',function(){
+   updateSubmit();
+  });
+});
+
+function updateSubmit(){
+    if ($('#suggestion-result').val().length > 0 )  {
+        $("input[type=submit]").prop("disabled", false);
+    }
+    else {
+        $("input[type=submit]").prop("disabled", true);
+    }
+}
