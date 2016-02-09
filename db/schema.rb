@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160203063255) do
     t.text     "description"
     t.string   "photo"
     t.string   "ext_link"
+    t.integer  "candy",       default: 0
     t.boolean  "taken",       default: false
     t.boolean  "event",       default: false
     t.boolean  "public",      default: true

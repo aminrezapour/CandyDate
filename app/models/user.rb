@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  after_create :first_invitation
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -20,13 +18,6 @@ class User < ActiveRecord::Base
         user.name = auth.info.name.split.first
         user.image = auth.info.image
       end
-  end
-
-
-  private
-
-  def first_invitation
-    self.invitations << Invitation.where(invitee_tel: @user.telephone)
   end
 
 end

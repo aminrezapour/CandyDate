@@ -18,22 +18,30 @@ class SuggestionsController < ApplicationController
     @suggestion = @user.suggestions.new(suggestion_params)
 
     if @suggestion.save
-      flash[:notice] = "Suggestion saved successfully."
+      flash[:notice] = "Place saved successfully."
       redirect_to user_suggestions_path(@user)
     else
-      flash[:alert] = "Suggestion failed to save."
+      flash[:alert] = "Place failed to save."
       render :new
     end
   end
 
   def edit
     @user = current_user
-    @suggestion = @user.suggestions.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
   end
 
   def update
+    @user = current_user
     @suggestion = Suggestion.find(params[:id])
-    redirect_to user_suggestions_path(current_user) if @suggestion.update(suggestion_params)
+    @suggestion.assign_attributes(suggestion_params)
+    if @suggestion.save
+      flash[:notice] = "Place updated successfully."
+      redirect_to user_suggestions_path(current_user)
+    else
+      flash[:alert] = "Place failed to update."
+      render :edit
+    end
   end
 
   def destroy

@@ -4,5 +4,5 @@ class Suggestion < ActiveRecord::Base
   has_many :suggestings
   has_many :invitations, through: :suggestings
 
-  validates :name, length: { minimum: 5 }, presence: true
+  validates :name, presence: true
 end
