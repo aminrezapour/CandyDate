@@ -88,35 +88,9 @@ class InvitationsController < ApplicationController
   end
 
   def edit
-      @invitation = Invitation.find(params[:id])
-      @inviter = @invitation.users.first
-      @invitee = @invitation.users.last
-      @suggestions = @invitation.suggestions
-
-      today = Date.today
-      @availables = []
-      for i in 0..14 do
-        @availables << today + i
-      end
-      upcoming_appointments = current_user.appointments.upcoming
-      for v in upcoming_appointments do
-        @availables.delete(v.day)
-      end
   end
 
   def update
-    @invitation = Invitation.find(params[:id])
-    @invitation.days_inviter = params[:availables_id].split
-    @invitation.suggestions = [ Suggestion.find(params[:suggestion_id]) ]
-
-    if @invitation.save
-      # send message
-      flash[:notice] = "Rain check created."
-      redirect_to user_invitations_path(current_user)
-    else
-      flash[:error] = "Wasn't able to rain check"
-      redirect_to user_invitations_path(current_user)
-    end
   end
 
   def destroy

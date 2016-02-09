@@ -18,7 +18,7 @@ class AppointmentsController < ApplicationController
     @invitation = Invitation.find(params[:invitation_id])
     @suggestion = Suggestion.find(params[:suggestion_id])
 
-    @invitee = current_user
+    @invitee = @invitation.users.last
     @inviter = @invitation.users.first
     if @inviter == @invitee
       flash[:alert] = "You can't make a date with yourself."
@@ -26,8 +26,14 @@ class AppointmentsController < ApplicationController
       return
     end
 
-    days_inviter = @invitation.days_inviter
-    upcoming_appointments = @inviter.appointments.upcoming
+    if @invitation.raincheck
+      days_inviter = @invitation.raincheck.days_rainchecker
+      upcoming_appointments = @invitee.appointments.upcoming
+    else
+      days_inviter = @invitation.days_inviter
+      upcoming_appointments = @inviter.appointments.upcoming
+    end
+    
     for v in upcoming_appointments do
       days_inviter.delete(v.day)
     end
@@ -44,9 +50,13 @@ class AppointmentsController < ApplicationController
       end
     end
 
-    if day.nil?
+    if day.nil? && @invitation.raincheck
+      flash[:error] = "Tough date to arrange! Please go back to your raincheck."
+      redirect_to new_user_invitation_raincheck_path(@invitee, @invitation)
+      return
+    elsif day.nil?
       flash[:error] = "We couldn't find a day that works for both of you!"
-      redirect_to edit_user_invitation_path(@invitee, @invitation)
+      redirect_to new_user_invitation_raincheck_path(@invitee, @invitation)
       return
     else
       @appointment.day = day

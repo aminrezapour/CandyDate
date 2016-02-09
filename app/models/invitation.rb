@@ -4,6 +4,7 @@ class Invitation < ActiveRecord::Base
   has_many :suggestings
   has_many :suggestions, through: :suggestings
   serialize :days_inviter, Array
+  has_one :raincheck
 
   def send_text_message
     inviter = self.users.first.name
