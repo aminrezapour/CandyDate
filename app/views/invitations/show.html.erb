@@ -1,22 +1,6 @@
 <div class="row">
   <div class="col-xs-2" id="amin6">
-    <ul class="nav nav-pills nav-stacked">
-      <li>
-        <%= link_to user_appointments_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_suggestions_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_invitations_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-    </ul>
+    <%= render partial: "leftbar", locals: {user: current_user} %>
   </div>
 
   <div class="col-xs-10">
@@ -25,49 +9,94 @@
       <h3>Invitation</h3>
     </div>
 
-    <div class="row">
-        <h3><%= @invitation.users.first.name %> invites <%= @invitation.invitee_name %></h3>
+    <div class="row" id="amin16">
+      <h5>..response pending</h5>
     </div>
 
     <div class="row">
-        <%= form_tag [@user, @appointment] do %>
+      <div class="col-xs-10">
+        <h3>Invited By: <%= @invitation.users.first.name %></h3>
+        <h3>To: <%= @invitation.users.count > 1 ? @invitation.users.last.name : @invitation.invitee_tel  %></h3>
+        <p>invitation was sent on <%= @invitation.created_at.strftime("%A, %B %e") %></p>
+      </div>
 
-          <%= hidden_field_tag(:invitation_id, @invitation.id) %>
-
-          <div id="invitation-suggestion">
-
-            <h3>Your Suggestions</h3>
-            <% @suggestions.each do |s| %>
-              <%= content_tag :div, class: "btn btn-default location", id: s.id do %>
-                <h4><%= s.name %></h4>
-                <p><%= s.description %></p>
-              <% end %>
-            <% end %>
-
+      <% if @invitation.users.first == current_user %>
+        <%= link_to [current_user, @invitation], method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <div class="col-xs-2" id="amin11">
+            <h5>Delete</h5>
           </div>
-          <div id="suggestion-result"></div>
+        <% end %>
+      <% end %>
+    </div>
 
-          <div id="available-days">
+    <% if @invitation.users.first != current_user %>
 
-            <h3>In the next 7 days, choose the days that you are free</h3>
+      <div class="row">
+          <%= form_tag [@user, @appointment] do %>
+
+            <%= hidden_field_tag(:invitation_id, @invitation.id) %>
+
+            <div id="invitation-suggestion">
+
+              <h3>Suggested Activity</h3>
+              <% @suggestions.each do |s| %>
+                <%= content_tag :div, class: "amin18 location", id: s.id do %>
+                  <h4>
+                    <%= s.name %>
+                    <% if s.event %>
+                      <i class="glyphicon glyphicon-tags"> </i>&nbsp;
+                    <% end %>
+                  </h4>
+                <% end %>
+              <% end %>
+
+            </div>
+            <div id="suggestion-result"></div>
+
+            <div id="available-days">
+
+              <h3>Days I'm free</h3>
+              <small>
+                (Your availablities are private and only visible to you.)
+              </small>
               <% @availables.each do |a| %>
-                  <%= content_tag :div, class: "btn btn-default day", id: a do %>
-                    <%= a.strftime("%A") %>
+                  <%= content_tag :div, class: "amin18 day", id: a do %>
+                    <% if a == Date.today %>
+                      <h4>Tonight</h4>
+                    <% elsif a == Date.today + 1 %>
+                      <h4>Tomorrow</h4>
+                    <% else %>
+                      <h4><%= a.strftime("%A") %></h4>
+                    <% end %>
                   <% end %>
               <% end %>
 
-          </div>
-          <div id="days-result"></div>
-
-          <% if @invitation.users.first != current_user %>
-            <div class="row">
-              <%= submit_tag("Create a Date", class: "btn btn-block save", id: "amin12") %>
             </div>
-          <% end %>
+            <div id="days-result"></div>
 
+              <div class="row">
+                <%= submit_tag("Create a Date", class: "btn btn-block save", id: "amin12") %>
+              </div>
+            <% end %>
+
+      </div>
+
+    <% else %>
+
+      <h3>Suggested Activity</h3>
+      <% @suggestions.each do |s| %>
+        <%= content_tag :div, class: "amin18 location", id: s.id do %>
+          <h4>
+            <%= s.name %>
+            <% if s.event %>
+              <i class="glyphicon glyphicon-tags"> </i>&nbsp;
+            <% end %>
+          </h4>
         <% end %>
+      <% end %>
 
-    </div>
+    <% end %>
+
 
   </div>
 

@@ -21,14 +21,20 @@ class AppointmentsController < ApplicationController
     @invitee = current_user
     @inviter = @invitation.users.first
     if @inviter == @invitee
-      flash[:alert] = "You can't make a date with yourself"
+      flash[:alert] = "You can't make a date with yourself."
       redirect_to user_invitation_path(current_user, @invitation)
       return
     end
+
     days_inviter = @invitation.days_inviter
+    upcoming_appointments = @inviter.appointments.upcoming
+    for v in upcoming_appointments do
+      days_inviter.delete(v.day)
+    end
+
     days_invitee = params[:availables_id].split
-    @appointment = @inviter.appointments.create!
-    @appointment.users << @invitee
+    @appointment = Appointment.new
+    @appointment.users << @inviter << @invitee
     @appointment.suggestion = @suggestion
 
     for d in days_inviter do
@@ -38,17 +44,23 @@ class AppointmentsController < ApplicationController
       end
     end
 
-    # if no overlap, some function must be triggered
-    unless day.nil?
+    if day.nil?
+      flash[:error] = "We couldn't find a day that works for both of you!"
+      redirect_to edit_user_invitation_path(@invitee, @invitation)
+      return
+    else
       @appointment.day = day
     end
 
     if @appointment.save
-      # a message sent to both numbers
+      # @appointment.send_text_message
       @invitation.confirmed = true
       @invitation.save
       flash[:notice] = "Congratulations! You both are free on #{day}"
       redirect_to user_appointments_path(@invitee)
+    else
+      flash[:error] = "Failed"
+      redirect_to user_invitations_path(@invitee)
     end
   end
 

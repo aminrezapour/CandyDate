@@ -23,7 +23,7 @@
                 <%= image_tag current_user.image, size: "50x50" %>
                 <%= "Hi #{current_user.name}!" %>
             <% end %>
-            <img src="https://carpoolcandy.files.wordpress.com/2013/07/carpool_candy-1logo-com.jpg" height="50" width="200">
+            <img src="http://s11.postimg.org/p9wmh7k6r/candydatefinal.png" height="50" width="220" style="padding:0px 10px 0px 15px;">
             <% if current_user.telephone.nil? %>
                 <%= form_for current_user, class: 'navbar-form navbar-left', role: "search" do |f| %>
                   <div class="form-group">
@@ -46,7 +46,7 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
               <li class="pull-left"><%= link_to  "Home", root_path %><span class="sr-only">(current)</span></li>
-              <img src="https://carpoolcandy.files.wordpress.com/2013/07/carpool_candy-1logo-com.jpg" height="50" width="200">
+              <img src="http://s11.postimg.org/p9wmh7k6r/candydatefinal.png" height="50" width="220" style="padding:0px 10px 0px 15px;">
               <li class="pull-right"><%= link_to  "About", about_path %><span class="sr-only">(current)</span></li>
             </ul>
         </div>

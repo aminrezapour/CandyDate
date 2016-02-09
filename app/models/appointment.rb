@@ -20,19 +20,19 @@ class Appointment < ActiveRecord::Base
     twilio_phone_number = "3235215929"
 
     loc = self.suggestion.name
-    on_this_date = self.slot.strftime("%A %b, %e at %l%P")
+    on_this_date = self.day.strftime("%A %b %e")
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => [number1_to_send_to],
-      :body => "You have a date with #{user2.name} on #{on_this_date} at #{loc}. Manage your dates online at www.candydate.me"
+      :body => "You have a date with #{user2.name} on #{on_this_date} at #{loc}. Thank you for using CandyDate."
     )
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => [number2_to_send_to],
-      :body => "You have a date with #{user1.name} on #{on_this_date} at #{loc}. Manage your dates online at www.candydate.me"
+      :body => "You have a date with #{user1.name} on #{on_this_date} at #{loc}. Thank you for using CandyDate."
     )
   end
 

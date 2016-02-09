@@ -17,7 +17,7 @@
       <% end %>
       <%= link_to user_invitations_path(current_user) do %>
         <div class="row" id="amin4">
-          <h3><%= @user.invitations.count %> | Invitations</h3>
+          <h3><%= @user.invitations.where(confirmed: false).count %> | Invitations</h3>
         </div>
       <% end %>
 
