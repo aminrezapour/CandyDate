@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
       days_inviter = @invitation.days_inviter
       upcoming_appointments = @inviter.appointments.upcoming
     end
-    
+
     for v in upcoming_appointments do
       days_inviter.delete(v.day)
     end
@@ -66,6 +66,10 @@ class AppointmentsController < ApplicationController
       # @appointment.send_text_message
       @invitation.confirmed = true
       @invitation.save
+      if @suggestion.event
+        @suggestion.taken = true
+        @suggestion.save
+      end
       flash[:notice] = "Congratulations! You both are free on #{day}"
       redirect_to user_appointments_path(@invitee)
     else

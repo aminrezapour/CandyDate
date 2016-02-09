@@ -1,22 +1,6 @@
 <div class="row">
   <div class="col-xs-2" id="amin6">
-    <ul class="nav nav-pills nav-stacked">
-      <li>
-        <%= link_to user_appointments_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_suggestions_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_invitations_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-    </ul>
+    <%= render partial: "leftbar", locals: {user: current_user} %>
   </div>
 
   <div class="col-xs-10">
@@ -32,17 +16,19 @@
         <% end %>
 
         <div class="row">
-          <div class="col-xs-3">
-            <%= link_to "Calendar", "#", id: "calendar-view", remote: true %>
-          </div>
-          <div class="col-xs-3">
-            <%= link_to "All", "#", id: "all-appointments", remote: true %>
-          </div>
-          <div class="col-xs-3">
-            <%= link_to "Future", "#", id: "upcoming-appointments", remote: true %>
-          </div>
-          <div class="col-xs-3">
-            <%= link_to "Past", "#", id: "past-appointments", remote: true %>
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <%= link_to "Calendar", "#", class: "btn btn-primary", id: "calendar-view", remote: true %>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to "All", "#", class: "btn btn-info", id: "all-appointments", remote: true %>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to "Future", "#", class: "btn btn-info", id: "upcoming-appointments", remote: true %>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to "Past", "#", class: "btn btn-info", id: "past-appointments", remote: true %>
+            </div>
           </div>
         </div>
 
