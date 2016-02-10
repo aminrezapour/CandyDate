@@ -22,7 +22,7 @@
 
         <%= hidden_field_tag(:invitee_tel, @invitee_tel) %>
 
-        <div id="invitation-suggestions">
+        <div class="row" id="invitation-suggestions">
 
           <h3>Choose From My Places</h3>
           <% if @inviter_suggestions %>
@@ -61,22 +61,27 @@
         </div>
         <div id="suggestion-result"></div>
 
-        <div id="available-days">
+        <div class="row" id="available-days">
 
           <h3>Days I'm free</h3>
           <small>
             (Your availablities are private and only visible to you.)
           </small>
+          <br>
           <% @availables.each do |a| %>
-              <%= content_tag :div, class: "amin18 day", id: a do %>
-                <% if a == Date.today %>
+            <% if a == Date.today %>
+              <%= content_tag :div, class: "col-xs-6 amin18 day", id: a do %>
                   <h4>Tonight</h4>
-                <% elsif a == Date.today + 1%>
-                  <h4>Tomorrow</h4>
-                <% else %>
-                  <h4><%= a.strftime("%A") %></h4>
-                <% end %>
               <% end %>
+            <% elsif a == Date.today + 1%>
+              <%= content_tag :div, class: "col-xs-6 amin18 day", id: a do %>
+                  <h4>Tomorrow</h4>
+              <% end %>
+            <% else %>
+                  <%= content_tag :div, class: "col-xs-4 amin19 day", id: a do %>
+                      <h4><%= a.strftime("%a") %></h4>
+                  <% end %>
+            <% end %>
           <% end %>
 
         </div>
