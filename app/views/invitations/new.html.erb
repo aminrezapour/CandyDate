@@ -17,7 +17,6 @@
             <h3>Invite <%= @invitee.name %></h3>
           <% else %>
             <h3>Invite with phone number: <%= @invitee_tel %></h3>
-            <%= text_field_tag(:invitee_name, nil, placeholder: "Add name (optional)") %>
           <% end %>
         </div>
 
@@ -84,7 +83,7 @@
         <div id="days-result"></div>
 
         <div class="row">
-          <%= submit_tag("invite", class: "btn btn-block save btn-success") %>
+          <%= submit_tag("invite", class: "btn btn-block save", id: "amin12") %>
         </div>
 
       <% end %>

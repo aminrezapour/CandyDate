@@ -54,8 +54,9 @@ ActiveRecord::Schema.define(version: 20160209181413) do
   create_table "rainchecks", force: :cascade do |t|
     t.integer  "invitation_id"
     t.string   "days_rainchecker"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.boolean  "confirmed",        default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "rainchecks", ["invitation_id"], name: "index_rainchecks_on_invitation_id"

@@ -70,10 +70,12 @@ class AppointmentsController < ApplicationController
         @suggestion.taken = true
         @suggestion.save
       end
-      flash[:notice] = "Congratulations! You both are free on #{day}"
+      @suggestion.candy += 1
+      @suggestion.save
+      flash[:notice] = "Congratulations! You both are free on #{day}."
       redirect_to user_appointments_path(@invitee)
     else
-      flash[:error] = "Failed"
+      flash[:error] = "Failed to make a date."
       redirect_to user_invitations_path(@invitee)
     end
   end

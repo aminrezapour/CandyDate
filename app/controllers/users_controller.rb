@@ -1,15 +1,17 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(current_user)
+    @user = current_user
   end
 
   def update
     @user = current_user
     number = params[:user][:telephone].delete("-")
     @user.update_attribute(:telephone, number)
-    if Invitation.where(invitee_tel: @user.telephone)
-      @user.invitations << Invitation.where(invitee_tel: @user.telephone)
+
+    if Invitation.where(invitee_tel: number)
+      @user.invitations << Invitation.where(invitee_tel: number)
     end
+
     redirect_to(@user) if @user.save
   end
 end
