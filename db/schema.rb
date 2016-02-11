@@ -36,20 +36,12 @@ ActiveRecord::Schema.define(version: 20160209181413) do
     t.string   "invitee_tel"
     t.string   "days_inviter"
     t.string   "invitee_name"
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
     t.boolean  "confirmed",    default: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
-
-  create_table "invitings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "invitation_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "invitings", ["invitation_id"], name: "index_invitings_on_invitation_id"
-  add_index "invitings", ["user_id"], name: "index_invitings_on_user_id"
 
   create_table "rainchecks", force: :cascade do |t|
     t.integer  "invitation_id"

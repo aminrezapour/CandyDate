@@ -15,12 +15,12 @@
 
     <div class="row">
       <div class="col-xs-10">
-        <h3>Invited By: <%= @invitation.users.first.name %></h3>
-        <h3>To: <%= @invitation.users.count > 1 ? @invitation.users.last.name : @invitation.invitee_tel  %></h3>
-        <p>invitation was sent on <%= @invitation.created_at.strftime("%A, %B %e") %></p>
+        <h3>Invited By: <%= @invitation.inviter.name %></h3>
+        <h3>To: <%= @invitation.invitee ? @invitation.invitee.name : @invitation.invitee_tel  %></h3>
+        <p>invitation sent on <%= @invitation.created_at.strftime("%A, %B %e") %></p>
       </div>
 
-      <% if @invitation.users.first == current_user %>
+      <% if @invitation.inviter == current_user %>
         <%= link_to [current_user, @invitation], method: :delete, data: {confirm: 'Are you sure?'} do %>
           <div class="col-xs-2" id="amin11">
             <h5>Delete</h5>
@@ -29,7 +29,7 @@
       <% end %>
     </div>
 
-    <% if @invitation.users.first != current_user %>
+    <% if @invitation.inviter != current_user %>
 
       <div class="row">
           <%= form_tag [@user, @appointment] do %>

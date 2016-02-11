@@ -18,8 +18,8 @@ class AppointmentsController < ApplicationController
     @invitation = Invitation.find(params[:invitation_id])
     @suggestion = Suggestion.find(params[:suggestion_id])
 
-    @invitee = @invitation.users.last
-    @inviter = @invitation.users.first
+    @invitee = @invitation.invitee
+    @inviter = @invitation.inviter
     if @inviter == @invitee
       flash[:alert] = "You can't make a date with yourself."
       redirect_to user_invitation_path(current_user, @invitation)

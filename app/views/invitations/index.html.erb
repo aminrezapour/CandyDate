@@ -6,10 +6,10 @@
   <div class="col-xs-10">
 
         <div class="row" id="amin4">
-          <h3>Invitations</h3>
+          <h3>Invites</h3>
         </div>
 
-        <% if @invitations.count < 1 %>
+        <% if @invitations_sents.count < 1 %>
             <div class="row" id="amin11">
               Start a new invitation by clicking on <i class="glyphicon glyphicon-plus"> </i>&nbsp;!
             </div>
@@ -22,7 +22,26 @@
         <% end %>
 
         <div id='appointments-index'>
-          <%= render @invitations %>
+          <% @invitations_sents.each do |i| %>
+              <%= render({ partial: 'invitations/invitation', locals: {invitation: i} }) %>
+          <% end %>
+        </div>
+
+
+        <div class="row" id="amin4">
+          <h3>Invitations</h3>
+        </div>
+
+        <% if @invitations_receiveds.count < 1 %>
+            <div class="row" id="amin11">
+              No one has invited you yet.
+            </div>
+        <% end %>
+
+        <div id='appointments-index'>
+          <% @invitations_receiveds.each do |i| %>
+              <%= render({ partial: 'invitations/invitation', locals: {invitation: i} }) %>
+          <% end %>
         </div>
 
   </div>

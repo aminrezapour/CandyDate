@@ -3,8 +3,8 @@
 
     <%= link_to(user_invitation_raincheck_path(current_user, invitation, invitation.raincheck)) do %>
       <div class="col-xs-8" id="amin8">
-        <h3>Invited By: <%= invitation.users.first.name %></h3>
-        <h3>To: <%= invitation.users.count > 1 ? invitation.users.last.name : invitation.invitee_tel  %></h3>
+        <h3>Invited By: <%= invitation.invitee.name %></h3>
+        <h3>To: <%= invitation.inviter.name %></h3>
         <p>invitation was sent on <%= invitation.created_at.strftime("%A, %B %e") %></p>
       </div>
 
@@ -14,12 +14,14 @@
     <% end %>
 
   <% else %>
+
     <%= link_to(user_invitation_path(current_user, invitation)) do %>
       <div class="col-xs-10" id="amin8">
-        <h3>Invited By: <%= invitation.users.first.name %></h3>
-        <h3>To: <%= invitation.users.count > 1 ? invitation.users.last.name : invitation.invitee_tel  %></h3>
+        <h3>Invited By: <%= invitation.inviter.name %></h3>
+        <h3>To: <%= invitation.invitee ? invitation.invitee.name : invitation.invitee_tel  %></h3>
         <p>invitation was sent on <%= invitation.created_at.strftime("%A, %B %e") %></p>
       </div>
     <% end %>
+
   <% end %>
 </div>

@@ -1,10 +1,52 @@
-<h1>Under Construction</h1>
-<h1>Appointments#show</h1>
-<p>Find me in app/views/appointments/show.html.erb</p>
-<% if @appointment.day > Date.today %>
-  <%= link_to [current_user, @appointment], method: :delete, data: {confirm: 'Are you sure?'} do %>
-    <div class="col-xs-2" id="amin11">
-      <h5>Cancel</h5>
+<div class="row">
+
+  <div class="col-xs-2" id="amin6">
+    <ul class="nav nav-pills nav-stacked">
+      <% if @appointment.day > Date.today %>
+        <li>
+           <%= link_to [current_user, @appointment], id: "amin11", method: :delete, data: {confirm: 'Are you sure?'} do %>
+               <h5>Cancel Date</h5>
+           <% end %>
+        </li>
+      <% end %>
+       <li>
+         <%= link_to user_appointments_path(@user),  id: "amin17" do %>
+           <i class="glyphicon glyphicon-arrow-left"></i>
+         <% end %>
+       </li>
+    </ul>
+  </div>
+
+  <div class="col-xs-10">
+
+    <div class="row" id="amin4">
+        <h3>Edit Place</h3>
     </div>
-  <% end %>
-<% end %>
+
+          <div class="row" style="padding:10px;border:solid;margin:5px;">
+
+              <div class="row" style="text-align:center;">
+                  <h5><%= @appointment.day.strftime("%A %b %e") %></h5>
+              </div>
+
+              <div class="col-xs-5" style="border:solid;padding:20px;">
+                <div>
+                  <%= image_tag @appointment.users.select{|u| u!=@user}.first.image, class: 'media-object' %>
+                </div>
+                <div>
+                  <h3><%= @appointment.users.select{|u| u!=@user}.first.name %></h3>
+                </div>
+              </div>
+
+              <div class="col-xs-7" style="padding:10px;">
+                <div>
+                  <h3><%= @appointment.suggestion.name %></h3>
+                  <small><%= @appointment.suggestion.description %></small>
+                </div>
+              </div>
+
+          </div>
+
+  </div>
+
+</div>

@@ -1,7 +1,7 @@
 class SuggestionsController < ApplicationController
   def index
     @user = current_user
-    @suggestions = @user.suggestions
+    @suggestions = @user.suggestions.where(taken: false)
   end
 
   def show
@@ -35,6 +35,7 @@ class SuggestionsController < ApplicationController
     @user = current_user
     @suggestion = Suggestion.find(params[:id])
     @suggestion.assign_attributes(suggestion_params)
+
     if @suggestion.save
       flash[:notice] = "Place updated successfully."
       redirect_to user_suggestions_path(current_user)

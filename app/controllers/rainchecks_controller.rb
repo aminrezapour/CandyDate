@@ -20,8 +20,8 @@ class RainchecksController < ApplicationController
   def new
     @raincheck = Raincheck.new
     @invitation = Invitation.find(params[:invitation_id])
-    @r_inviter = @invitation.users.last
-    @r_invitee = @invitation.users.first
+    @r_inviter = @invitation.invitee
+    @r_invitee = @invitation.inviter
     @suggestions = @invitation.suggestions
 
     today = Date.today

@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     number = params[:user][:telephone].delete("-")
     @user.update_attribute(:telephone, number)
 
-    if Invitation.where(invitee_tel: number)
-      @user.invitations << Invitation.where(invitee_tel: number)
+    if Invitation.find_by_invitee_tel(number)
+      @user.invitations_received << Invitation.find_by_invitee_tel(number)
     end
 
-    redirect_to(@user) if @user.save
+    redirect_to @user if @user.save
   end
 end

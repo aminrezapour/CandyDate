@@ -1,7 +1,8 @@
 class InvitationsController < ApplicationController
   def index
     @user = current_user
-    @invitations = @user.invitations.where(confirmed: false).order(created_at: :asc)
+    @invitations_sents = @user.invitations_sent.where(confirmed: false).order(created_at: :asc)
+    @invitations_receiveds = @user.invitations_received.where(confirmed: false).order(created_at: :asc)
   end
 
   def find_user
@@ -10,7 +11,7 @@ class InvitationsController < ApplicationController
 
   def show
     @user = current_user
-    @invitation = @user.invitations.find(params[:id])
+    @invitation = Invitation.find(params[:id])
     @suggestions = @invitation.suggestions
     @appointment = Appointment.new
 
@@ -61,15 +62,13 @@ class InvitationsController < ApplicationController
   def create
     @inviter = current_user
     @invitation = Invitation.new
-    @invitation.users << @inviter
+    @invitation.inviter = @inviter
     invitee_tel = params[:invitee_tel].delete("-")
     @invitation.invitee_tel = invitee_tel
     @invitee = User.find_by_telephone(invitee_tel)
     if @invitee
-      @invitation.users << @invitee
+      @invitation.invitee = @invitee
       @invitation.invitee_name = @invitee.name
-    else
-      @invitation.invitee_name = params[:invitee_name]
     end
     suggestions_id = params[:suggestions_id].split
     for id in suggestions_id
