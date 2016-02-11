@@ -1,0 +1,72 @@
+<div class="row">
+
+    <div class="col-xs-2" id="amin6">
+      <%= render partial: "leftbar", locals: {user: current_user} %>
+    </div>
+
+    <div class="col-xs-10">
+
+      <div class="row" id="amin18">
+        <h3>Wanna Rain Check?</h3>
+      </div>
+
+      <%= form_tag [current_user, @invitation, @raincheck] do %>
+
+        <div class="row">
+          <h3>Rain check by: <%= @r_inviter.name %></h3>
+          <h3>To: <%= @r_invitee.name %></h3>
+        </div>
+
+        <div id="invitation-suggestion">
+
+          <h3>Suggested Places</h3>
+          <% @suggestions.each do |s| %>
+            <%= content_tag :div, class: "amin18 location", id: s.id do %>
+              <h4>
+                <%= s.name %>
+                <% if s.event %>
+                  <i class="glyphicon glyphicon-tags"> </i>&nbsp;
+                <% end %>
+              </h4>
+              <p><%= s.description %></p>
+            <% end %>
+          <% end %>
+
+        </div>
+        <div id="suggestion-result"></div>
+
+        <div class="rwo" id="available-days">
+
+          <h3>Extended Days</h3>
+          <small>
+            (Your availablities are private and only visible to you.)
+          </small>
+          <br>
+          <% @availables.each do |a| %>
+            <% if a == Date.today %>
+              <%= content_tag :div, class: "col-xs-6 amin18 day", id: a do %>
+                  <h4>Tonight</h4>
+              <% end %>
+            <% elsif a == Date.today + 1%>
+              <%= content_tag :div, class: "col-xs-6 amin18 day", id: a do %>
+                  <h4>Tomorrow</h4>
+              <% end %>
+            <% else %>
+                  <%= content_tag :div, class: "col-xs-4 amin19 day", id: a do %>
+                      <h4><%= a.strftime("%a") %></h4>
+                  <% end %>
+            <% end %>
+          <% end %>
+
+        </div>
+        <div id="days-result"></div>
+
+        <div class="row">
+          <%= submit_tag("invite", class: "btn btn-block save", id: "amin12") %>
+        </div>
+
+      <% end %>
+
+    </div>
+
+</div>

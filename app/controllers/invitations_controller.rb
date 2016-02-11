@@ -1,7 +1,8 @@
 class InvitationsController < ApplicationController
   def index
     @user = current_user
-    @invitations = @user.invitations.where(confirmed: false).order(created_at: :asc)
+    @invitations_sents = @user.invitations_sent.where(confirmed: false).order(created_at: :asc)
+    @invitations_receiveds = @user.invitations_received.where(confirmed: false).order(created_at: :asc)
   end
 
   def find_user
@@ -10,9 +11,9 @@ class InvitationsController < ApplicationController
 
   def show
     @user = current_user
-    @invitation = @user.invitations.find(params[:id])
+    @invitation = Invitation.find(params[:id])
     @suggestions = @invitation.suggestions
-    @appointment = @user.appointments.new
+    @appointment = Appointment.new
 
     today = Date.today
     @availables = []
@@ -27,16 +28,24 @@ class InvitationsController < ApplicationController
 
   def new
     @inviter = current_user
-    @invitation = @inviter.invitations.new
+    @invitation = Invitation.new
     @inviter_suggestions = @inviter.suggestions.where(taken: false)
 
-    @invitee_tel = params[:tel]
+    @invitee_tel = params[:tel].delete("-")
+    if @invitee_tel.length < 10
+      flash[:error] = "Invalid number."
+      redirect_to user_find_user_path(@inviter)
+      return
+    end
+
     @invitee = User.find_by_telephone(@invitee_tel)
     if @invitee && @invitee == @inviter
       flash[:error] = "You can't ask yourself out."
       redirect_to user_find_user_path(@inviter)
+      return
     elsif @invitee
       @invitee_suggestions = @invitee.suggestions.where(public: true).where(taken: false)
+      flash[:notice] = "#{@invitee.name} public places were added to this invitation."
     end
 
     today = Date.today
@@ -53,15 +62,13 @@ class InvitationsController < ApplicationController
   def create
     @inviter = current_user
     @invitation = Invitation.new
-    @invitation.users << @inviter
-    invitee_tel = params[:invitee_tel]
+    @invitation.inviter = @inviter
+    invitee_tel = params[:invitee_tel].delete("-")
     @invitation.invitee_tel = invitee_tel
     @invitee = User.find_by_telephone(invitee_tel)
     if @invitee
-      @invitation.users << @invitee
+      @invitation.invitee = @invitee
       @invitation.invitee_name = @invitee.name
-    else
-      @invitation.invitee_name = params[:invitee_name]
     end
     suggestions_id = params[:suggestions_id].split
     for id in suggestions_id
@@ -69,9 +76,8 @@ class InvitationsController < ApplicationController
     end
     @invitation.days_inviter = params[:availables_id].split
 
-    # txt message to be added
-
     if @invitation.save
+      # @invitation.send_text_message
       flash[:notice] = "Invitation created successfully, a text message was sent to #{invitee_tel}"
       redirect_to user_invitations_path(@inviter)
     else
@@ -91,6 +97,9 @@ class InvitationsController < ApplicationController
 
     if @invitation.destroy
       flash[:alert] = "Invitation deleted"
+      redirect_to user_invitations_path(current_user)
+    else
+      flash[:error] = "Wasn't able to delete invitation"
       redirect_to user_invitations_path(current_user)
     end
   end

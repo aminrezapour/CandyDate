@@ -1,44 +1,47 @@
 <div class="row">
   <div class="col-xs-2" id="amin6">
-    <ul class="nav nav-pills nav-stacked">
-      <li>
-        <%= link_to user_appointments_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_suggestions_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_invitations_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-    </ul>
+    <%= render partial: "leftbar", locals: {user: @user} %>
   </div>
 
   <div class="col-xs-10">
 
         <div class="row" id="amin4">
-          <h3>Invitations</h3>
+          <h3>Invites</h3>
         </div>
 
-        <% if @invitations.count < 1 %>
+        <% if @invitations_sents.count < 1 %>
             <div class="row" id="amin11">
               Start a new invitation by clicking on <i class="glyphicon glyphicon-plus"> </i>&nbsp;!
             </div>
         <% end %>
 
         <%= link_to user_find_user_path(current_user) do %>
-          <div class="row">
+          <div class="row" id="amin12">
             <h3><i class="glyphicon glyphicon-plus"> </i>&nbsp;</h3>
           </div>
         <% end %>
 
         <div id='appointments-index'>
-          <%= render @invitations %>
+          <% @invitations_sents.each do |i| %>
+              <%= render({ partial: 'invitations/invitation', locals: {invitation: i} }) %>
+          <% end %>
+        </div>
+
+
+        <div class="row" id="amin4">
+          <h3>Invitations</h3>
+        </div>
+
+        <% if @invitations_receiveds.count < 1 %>
+            <div class="row" id="amin11">
+              No one has invited you yet.
+            </div>
+        <% end %>
+
+        <div id='appointments-index'>
+          <% @invitations_receiveds.each do |i| %>
+              <%= render({ partial: 'invitations/invitation', locals: {invitation: i} }) %>
+          <% end %>
         </div>
 
   </div>

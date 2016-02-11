@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div id="amin">
-    <h1>Newsfeed will be added here</h1>
+    <h1>Your newsfeed will be added here.</h1>
     <br>
     <p style="text-align:center;padding:10px 50px 5px 50px;">
       Click on your photo to see your dashboard.
@@ -14,13 +14,20 @@
     <p style="text-align:justify;padding:10px 50px 5px 50px;">
       Thank you for trying CandyDate. If this is your first time here, most probably
       you have been referred by one of our existing users. Go ahead and login, save your
-      phone number and make a new date by searching her/his phone number.
+      phone number and find out who has asked you out.
+    </p>
+    <%= link_to "Sign In with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+    <h3>How it works?</h3>
+    <p style="text-align:justify;padding:5px 50px 10px 50px;">
+      Ask someone out by sending them an invitation. Suggest an avtivity and secretly
+      tell us the nights that you are free in the next 7 days. They will choose from
+      your list of suggestions and tell us their open nights (secretly of course!). We
+      let you both know the earliest available day that works out.
     </p>
     <p style="text-align:justify;padding:5px 50px 10px 50px;">
       If you like the magic, spread the love and let your friends know. Your experience
       and your feedback is extremely important to us at this early stage of this
       amazing product. We love to hear from you, please see the "About" section.
     </p>
-    <%= link_to "Sign In with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
   </div>
 <% end %>

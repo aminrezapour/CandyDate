@@ -1,9 +1,17 @@
 <div class="simple-calendar">
-  <%= link_to "Previous", start_date: date_range.first - 1.day  %>
-  <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-  <%= link_to "Next", start_date: date_range.last + 1.day  %>
+  <div class="row" style="text-align:center;">
+    <h3>
+      <%= link_to start_date: date_range.first - 1.day do  %>
+          <i class="glyphicon glyphicon-circle-arrow-left"> </i>&nbsp;
+      <% end %>
+      <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+      <%= link_to start_date: date_range.last + 1.day do %>
+        <i class="glyphicon glyphicon-circle-arrow-right"> </i>&nbsp;
+      <% end %>
+    </h3>
+  </div>
 
-  <table class="table table-striped">
+  <table class="table table-striped" style="border:solid;">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>

@@ -4,6 +4,8 @@ class CreateInvitations < ActiveRecord::Migration
       t.string :invitee_tel
       t.string :days_inviter
       t.string :invitee_name
+      t.integer :inviter_id
+      t.integer :invitee_id
       t.boolean :confirmed, :default => false
 
       t.timestamps null: false

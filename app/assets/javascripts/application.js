@@ -19,6 +19,11 @@
 
 $(document).ready(function() {
 
+  updateSubmit();
+  $('#suggestion-result, #days-result').bind("DOMSubtreeModified", function(){
+    updateSubmit();
+  });
+
   $("#invitation-suggestions").bind("mousedown", function(e) {
     e.metaKey = true;
   }).selectable({
@@ -53,6 +58,12 @@ $(document).ready(function() {
 });
 
 $(document).on('page:load', function() {
+
+  updateSubmit();
+  $('#suggestion-result, #days-result').bind("DOMSubtreeModified", function(){
+    updateSubmit();
+  });
+
   $("#invitation-suggestion").selectable({
     stop : function () {
       var result = $(".ui-selected.location").attr('id');
@@ -62,32 +73,24 @@ $(document).on('page:load', function() {
 
   $("#available-days").bind("mousedown", function(e) {
     e.metaKey = true;
-    }).selectable({
-      stop : function () {
-        var results = "";
-        $(".ui-selected.day").each(function () {
-          results += $(this).attr('id') + " ";
-        });
-        $("#days-result").html("<input type='hidden' name='availables_id' id='availables_id' value='"+results+"' />");
-      }
-    });
-});
-
-
-
-
-$(document).ready(function (){
-    updateSubmit();
-    $('#suggestion-result').on('change',function(){
-   updateSubmit();
+  }).selectable({
+    stop : function () {
+      var results = "";
+      $(".ui-selected.day").each(function () {
+        results += $(this).attr('id') + " ";
+      });
+      $("#days-result").html("<input type='hidden' name='availables_id' id='availables_id' value='"+results+"' />");
+    }
   });
+
 });
 
 function updateSubmit(){
-    if ($('#suggestion-result').val().length > 0 )  {
+    // console.log('foo');
+    if (($('#suggestions_id').attr('value') || $('#suggestion_id').attr('value')) && $('#availables_id').attr('value'))  {
         $("input[type=submit]").prop("disabled", false);
     }
     else {
-        $("input[type=submit]").prop("disabled", true);
+        $("input[type=submit].save").prop("disabled", true);
     }
 }

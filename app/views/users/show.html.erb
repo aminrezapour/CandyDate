@@ -1,39 +1,28 @@
 <div class="row">
   <div class="col-xs-2" id="amin6">
-    <ul class="nav nav-pills nav-stacked">
-      <li>
-        <%= link_to user_appointments_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_suggestions_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to user_invitations_path(@user), id: "amin7" do %>
-          <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
-        <% end %>
-      </li>
-    </ul>
+    <%= render partial: "leftbar", locals: {user: @user} %>
   </div>
 
   <div class="col-xs-10">
 
       <%= link_to user_appointments_path(current_user) do %>
         <div class="row" id="amin4">
-          <h3>Dates</h3>
+          <h3><%= @user.appointments.count %> | Dates</h3>
         </div>
       <% end %>
       <%= link_to user_suggestions_path(current_user) do %>
         <div class="row" id="amin5">
-          <h3>Places</h3>
+          <h3><%= @user.suggestions.count %> | Places</h3>
         </div>
       <% end %>
       <%= link_to user_invitations_path(current_user) do %>
         <div class="row" id="amin4">
-          <h3>Invitations</h3>
+          <h3><%= @user.invitations_sent.where(confirmed: false).count %> | Invites</h3>
+        </div>
+      <% end %>
+      <%= link_to user_invitations_path(current_user) do %>
+        <div class="row" id="amin5">
+          <h3><%= @user.invitations_received.where(confirmed: false).count %> | Invitations</h3>
         </div>
       <% end %>
 

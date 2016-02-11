@@ -98,8 +98,9 @@
 
  #amin11 {
    background-color: red;
+   border-radius: 0px;
    color: white;
-   padding: 25px 20px 25px 5px;
+   padding: 25px 20px 25px 20px;
    text-align: center;
  }
 
@@ -135,6 +136,45 @@
    text-align: center;
  }
 
-.ui-selected {
-  background-color: red;
+#amin17 {
+  background-color: gray;
+  border-radius: 0px;
+  color: white;
+  padding: 25px 20px 25px 20px;
+  text-align: center;
+}
+
+.amin18 {
+  background-color: #BDBDBD;
+  margin: 0px;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.amin18.location.ui-selected {
+  background-color: #00e600;
+}
+
+.amin18.day.ui-selected {
+  background-color: #1ac6ff;
+}
+
+#amin18 {
+  background-color: #ff9933;
+  color: white;
+  padding: 25px 20px 25px 5px;
+  text-align: center;
+}
+
+.amin19 {
+  background-color: #BDBDBD;
+  margin: 0px;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.amin19.day.ui-selected {
+  background-color: #1ac6ff;
 }

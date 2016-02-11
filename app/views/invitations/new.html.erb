@@ -1,31 +1,12 @@
 <div class="row">
 
     <div class="col-xs-2" id="amin6">
-      <ul class="nav nav-pills nav-stacked">
-        <li>
-          <%= link_to user_appointments_path(current_user), id: "amin7" do %>
-            <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to user_suggestions_path(current_user), id: "amin7" do %>
-            <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to user_invitations_path(current_user), id: "amin7" do %>
-            <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
-          <% end %>
-        </li>
-      </ul>
+      <%= render partial: "leftbar", locals: {user: current_user} %>
     </div>
 
     <div class="col-xs-10">
 
       <div class="row" id="amin4">
-        <h3>Invitations</h3>
-      </div>
-      <div class="row" id="amin9">
         <h3>New Invitation</h3>
       </div>
 
@@ -33,59 +14,81 @@
 
         <div class="row">
           <% if @invitee %>
-            <h3>Ask <%= @invitee.name %> out.</h3>
-            <p>Phone Number is <%= @invitee.telephone %></p>
+            <h3>Invite <%= @invitee.name %></h3>
           <% else %>
             <h3>Invite with phone number: <%= @invitee_tel %></h3>
-            <%= text_field_tag(:invitee_name, nil, placeholder: "Add name (optional)") %>
           <% end %>
         </div>
 
         <%= hidden_field_tag(:invitee_tel, @invitee_tel) %>
 
-        <div id="invitation-suggestions">
+        <div class="row" id="invitation-suggestions">
 
-          <h3>Your Suggestions</h3>
+          <h3>Choose From My Places</h3>
           <% if @inviter_suggestions %>
               <% @inviter_suggestions.each do |s| %>
-                <%= content_tag :div, class: "btn btn-default location", id: s.id do %>
-                  <h4><%= s.name %></h4>
+                <%= content_tag :div, class: "amin18 location", id: s.id do %>
+                  <h4>
+                    <%= s.name %>
+                    <% unless s.public %>
+                      <i class="glyphicon glyphicon-lock"> </i>&nbsp;
+                    <% end %>
+                    <% if s.event %>
+                      <i class="glyphicon glyphicon-tags"> </i>&nbsp;
+                    <% end %>
+                  </h4>
                 <% end %>
               <% end %>
           <% else %>
-            <h4>You have no suggestion. Make some.</h4>
+            <h4>You have no places.</h4>
           <% end %>
 
-          <h3>His/Her public Suggestions</h3>
-          <% if @invitee_suggestions %>
+          <% if @invitee_suggestions && @invitee_suggestions.count > 0 %>
+            <h3><%= @invitee.name %>'s Public Places</h3>
               <% @invitee_suggestions.each do |s| %>
-                <%= content_tag :div, class: "btn btn-default location", id: s.id do %>
-                  <h4><%= s.name %></h4>
+                <%= content_tag :div, class: "amin18 location", id: s.id do %>
+                  <h4>
+                    <%= s.name %>
+                    <% if s.event %>
+                      <i class="glyphicon glyphicon-tags"> </i>&nbsp;
+                    <% end %>
+                  </h4>
                   <p><%= s.description %></p>
                 <% end %>
               <% end %>
-          <% else %>
-            <h4>None</h4>
           <% end %>
 
         </div>
         <div id="suggestion-result"></div>
 
-        <div id="available-days">
+        <div class="row" id="available-days">
 
-          <h3>In the next 7 days, choose the days that you are free</h3>
-            <% @availables.each do |a| %>
-                <%= content_tag :div, class: "btn btn-default day", id: a do %>
-                  <%= a.strftime("%A") %>
-                <% end %>
+          <h3>Days I'm free</h3>
+          <small>
+            (Your availablities are private and only visible to you.)
+          </small>
+          <br>
+          <% @availables.each do |a| %>
+            <% if a == Date.today %>
+              <%= content_tag :div, class: "col-xs-6 amin18 day", id: a do %>
+                  <h4>Tonight</h4>
+              <% end %>
+            <% elsif a == Date.today + 1%>
+              <%= content_tag :div, class: "col-xs-6 amin18 day", id: a do %>
+                  <h4>Tomorrow</h4>
+              <% end %>
+            <% else %>
+                  <%= content_tag :div, class: "col-xs-4 amin19 day", id: a do %>
+                      <h4><%= a.strftime("%a") %></h4>
+                  <% end %>
             <% end %>
+          <% end %>
 
         </div>
         <div id="days-result"></div>
 
-        <h4>A text message will be sent to the above number to setup this date</h4>
         <div class="row">
-          <%= submit_tag("Create", class: "btn btn-block save btn-success") %>
+          <%= submit_tag("invite", class: "btn btn-block save", id: "amin12") %>
         </div>
 
       <% end %>
