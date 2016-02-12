@@ -1,7 +1,7 @@
 class Invitation < ActiveRecord::Base
   belongs_to :inviter, class_name: "User"
   belongs_to :invitee, class_name: "User"
-  has_many :suggestings
+  has_many :suggestings, dependent: :nullify
   has_many :suggestions, through: :suggestings
   serialize :days_inviter, Array
   has_one :raincheck
