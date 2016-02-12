@@ -79,7 +79,7 @@
               <% end %>
             <% else %>
                   <%= content_tag :div, class: "col-xs-4 amin19 day", id: a do %>
-                      <h4><%= a.strftime("%a") %></h4>
+                      <h4><%= a.in_time_zone("Pacific Time (US & Canada)").strftime("%a") %></h4>
                   <% end %>
             <% end %>
           <% end %>

@@ -77,7 +77,7 @@ class InvitationsController < ApplicationController
     @invitation.days_inviter = params[:availables_id].split
 
     if @invitation.save
-      # @invitation.send_text_message
+      @invitation.send_text_message
       flash[:notice] = "Invitation created successfully, a text message was sent to #{invitee_tel}"
       redirect_to user_invitations_path(@inviter)
     else

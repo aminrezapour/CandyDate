@@ -20,7 +20,7 @@ class Appointment < ActiveRecord::Base
     twilio_phone_number = "3235215929"
 
     loc = self.suggestion.name
-    on_this_date = self.day.strftime("%A %b %e")
+    on_this_date = self.day.in_time_zone("Pacific Time (US & Canada)").strftime("%A %b %e")
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 

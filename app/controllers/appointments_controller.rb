@@ -63,7 +63,7 @@ class AppointmentsController < ApplicationController
     end
 
     if @appointment.save
-      # @appointment.send_text_message
+      @appointment.send_text_message
       @invitation.confirmed = true
       @invitation.save
       if @suggestion.event

@@ -17,7 +17,7 @@
       <div class="col-xs-10">
         <h3>Invited By: <%= @invitation.inviter.name %></h3>
         <h3>To: <%= @invitation.invitee ? @invitation.invitee.name : @invitation.invitee_tel  %></h3>
-        <p>invitation sent on <%= @invitation.created_at.strftime("%A, %B %e") %></p>
+        <p>invitation sent on <%= @invitation.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%A, %B %e") %></p>
       </div>
 
       <% if @invitation.inviter == current_user %>
@@ -71,7 +71,7 @@
                   <% end %>
                 <% else %>
                       <%= content_tag :div, class: "col-xs-4 amin19 day", id: a do %>
-                          <h4><%= a.strftime("%a") %></h4>
+                          <h4><%= a.in_time_zone("Pacific Time (US & Canada)").strftime("%a") %></h4>
                       <% end %>
                 <% end %>
               <% end %>

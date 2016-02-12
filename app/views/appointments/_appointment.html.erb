@@ -1,7 +1,7 @@
 <%= link_to(user_appointment_path(@user, appointment)) do %>
   <div class="row" style="padding:10px;border:solid;margin:5px;">
             <div class="row" style="text-align:center;">
-                <h5><%= appointment.day.strftime("%A %b %e") %></h5>
+                <h5><%= appointment.day.in_time_zone("Pacific Time (US & Canada)").strftime("%A %b %e") %></h5>
             </div>
 
             <div class="col-xs-5" style="border:solid;padding:20px;">

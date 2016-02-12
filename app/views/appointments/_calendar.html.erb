@@ -1,5 +1,5 @@
 <%= month_calendar(attribute: :day, events: appointments) do |date, appointments| %>
-  <%= date.strftime("%-d") %>
+  <%= date.in_time_zone("Pacific Time (US & Canada)").strftime("%-d") %>
   <% appointments.each do |a| %>
     <% u = a.users.select{|u| u!=user}.first %>
     <%= link_to user_appointment_path(user, a) do %>
