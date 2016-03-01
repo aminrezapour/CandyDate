@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   get 'about' => 'welcome#about'
+  get 'slicklab' => 'welcome#slicklab'
   root 'welcome#index'
 
 end
