@@ -1,22 +1,43 @@
-<ul class="nav nav-pills nav-stacked">
-  <li>
-    <%= link_to user_appointments_path(user), id: "amin7" do %>
-      <h3><i class="glyphicon glyphicon-heart"> </i>&nbsp;</h3>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to user_suggestions_path(user), id: "amin7" do %>
-      <h3><i class="glyphicon glyphicon-map-marker"> </i>&nbsp;</h3>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to user_invitations_path(user), id: "amin7" do %>
-      <h3><i class="glyphicon glyphicon-envelope"> </i>&nbsp;</h3>
-    <% end %>
-  </li>
-  <li id="amin7">
-      <h5><i class="glyphicon glyphicon-menu-up"> </i>&nbsp;</h5>
-      <h5>scroll</h5>
-      <h5><i class="glyphicon glyphicon-menu-down"> </i>&nbsp;</h5>
-  </li>
-</ul>
+<!-- sidebar left start-->
+<div class="sidebar-left">
+  <!--responsive view logo start-->
+  <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
+      <a href="index.html">
+          <%= image_tag "logo-icon.png", alt: ""%>
+          <!--<i class="fa fa-maxcdn"></i>-->
+          <span class="brand-name">SlickLab</span>
+      </a>
+  </div>
+  <!--responsive view logo end-->
+
+  <div class="sidebar-left-info">
+
+      <!--sidebar nav start-->
+      <ul class="nav nav-pills nav-stacked side-navigation">
+          <li class="active">
+            <%= link_to user_path(current_user) do %>
+              <i class="fa fa-home"></i> <span>Dashboard</span>
+            <% end %>
+          </li>
+          <li class="active">
+            <%= link_to user_appointments_path(current_user) do %>
+              <i class="fa fa-calendar"></i> <span>Dates</span>
+            <% end %>
+          </li>
+          <li class="active">
+              <%= link_to user_suggestions_path(current_user) do %>
+                <i class="fa fa-map-marker"></i> <span>Places</span>
+              <% end %>
+          </li>
+          <li class="active">
+              <%= link_to user_invitations_path(current_user) do %>
+                <i class="fa fa-paper-plane"></i> <span>Invitations</span>
+              <% end %>
+          </li>
+      </ul>
+      <!--sidebar nav end-->
+
+  </div>
+
+</div>
+<!-- sidebar left end-->

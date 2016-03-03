@@ -1,31 +1,46 @@
-<div class="row">
-  <div class="col-xs-2" id="amin6">
-    <%= render partial: "leftbar", locals: {user: @user} %>
-  </div>
-
-  <div class="col-xs-10">
-
-      <%= link_to user_appointments_path(current_user) do %>
-        <div class="row" id="amin4">
-          <h3><%= @user.appointments.count %> | Dates</h3>
-        </div>
-      <% end %>
-      <%= link_to user_suggestions_path(current_user) do %>
-        <div class="row" id="amin5">
-          <h3><%= @user.suggestions.count %> | Places</h3>
-        </div>
-      <% end %>
-      <%= link_to user_invitations_path(current_user) do %>
-        <div class="row" id="amin4">
-          <h3><%= @user.invitations_sent.where(confirmed: false).count %> | Invites</h3>
-        </div>
-      <% end %>
-      <%= link_to user_invitations_path(current_user) do %>
-        <div class="row" id="amin5">
-          <h3><%= @user.invitations_received.where(confirmed: false).count %> | Invitations</h3>
-        </div>
-      <% end %>
-
-  </div>
-
+<div class="row state-overview">
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel purple">
+            <div class="symbol">
+                <i class="fa fa-heart"></i>
+            </div>
+            <div class="value white">
+                <h1 class="timer" data-from="0" data-to="8" data-speed="1000"></h1>
+                <p>Dates</p>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel ">
+            <div class="symbol purple-color">
+                <i class="fa fa-map-marker"></i>
+            </div>
+            <div class="value gray">
+                <h1 class="purple-color timer" data-from="0" data-to="123" data-speed="1000"></h1>
+                <p>Places</p>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel green">
+            <div class="symbol ">
+                <i class="fa fa-paper-plane"></i>
+            </div>
+            <div class="value white">
+                <h1 class="timer" data-from="0" data-to="432"data-speed="1000"></h1>
+                <p>Invitations Sent</p>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+            <div class="symbol green-color">
+                <i class="fa fa-paper-plane-o"></i>
+            </div>
+            <div class="value gray">
+                <h1 class="green-color timer" data-from="0" data-to="2345" data-speed="3000"></h1>
+                <p>Invitations Received</p>
+            </div>
+        </section>
+    </div>
 </div>
