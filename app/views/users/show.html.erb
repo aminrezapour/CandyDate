@@ -1,3 +1,4 @@
+<!-- four top blocks, state overview -->
 <div class="row state-overview">
     <div class="col-lg-3 col-sm-6">
         <section class="panel purple">
@@ -5,7 +6,7 @@
                 <i class="fa fa-heart"></i>
             </div>
             <div class="value white">
-                <h1 class="timer" data-from="0" data-to="8" data-speed="1000"></h1>
+                <h1 class="timer" data-from="0" data-to="2" data-speed="1000"></h1>
                 <p>Dates</p>
             </div>
         </section>
@@ -16,7 +17,7 @@
                 <i class="fa fa-map-marker"></i>
             </div>
             <div class="value gray">
-                <h1 class="purple-color timer" data-from="0" data-to="123" data-speed="1000"></h1>
+                <h1 class="purple-color timer" data-from="0" data-to="21" data-speed="1000"></h1>
                 <p>Places</p>
             </div>
         </section>
@@ -27,7 +28,7 @@
                 <i class="fa fa-paper-plane"></i>
             </div>
             <div class="value white">
-                <h1 class="timer" data-from="0" data-to="432"data-speed="1000"></h1>
+                <h1 class="timer" data-from="0" data-to="2"data-speed="1000"></h1>
                 <p>Invitations Sent</p>
             </div>
         </section>
@@ -38,9 +39,261 @@
                 <i class="fa fa-paper-plane-o"></i>
             </div>
             <div class="value gray">
-                <h1 class="green-color timer" data-from="0" data-to="2345" data-speed="3000"></h1>
+                <h1 class="green-color timer" data-from="0" data-to="1" data-speed="500"></h1>
                 <p>Invitations Received</p>
             </div>
         </section>
     </div>
+</div>
+
+<!-- the spending graph and recent date -->
+<div class="row">
+    <div class="col-md-8">
+        <section class="panel">
+            <header class="panel-heading">
+                Estimated Average Weekly Spending
+                <span class="tools pull-right">
+                    <a class="fa fa-repeat box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close fa fa-times" href="javascript:;"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+
+                <div class="earning-chart-space" id="dashboard-earning-chart"></div>
+
+                <div class="row earning-chart-info">
+                    <div class="col-sm-6 col-xs-6">
+                        <h4>$ 35</h4>
+                        <small class="text-muted"> Average Spending on a Date</small>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <h4>$ 55</h4>
+                        <small class="text-muted"> Last Date</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="col-md-4">
+        <section class="panel">
+
+            <div class="slick-carousal">
+                <div class="overlay-c-bg"></div>
+                <div id="news-feed" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <h3 class="text-success">Next Date</h3>
+                        <span class="date">Friday</span>
+                        <h1>Bodega Wine Bar</h1>
+                        <div class="text-center">
+                            <a href="javascript:;" class="view-all">View All</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3 class="text-success">Wishlist</h3>
+                        <span class="date">Make and Invitation</span>
+                        <h1>Cafe Gratitude</h1>
+                        <div class="text-center">
+                            <a href="javascript:;" class="view-all">View All</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3 class="text-success">Suggested Date</h3>
+                        <span class="date">Friday</span>
+                        <h1>First Friday on Abbot Kinney</h1>
+                        <div class="text-center">
+                            <a href="javascript:;" class="view-all">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+
+<!-- date, weahter and blogs -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+
+          <section class="isolate-tabs w-tabs p-s-info">
+              <div class="panel-body">
+                  <div class="tab-content">
+                      <div id="clock" class="tab-pane active">
+                          <div class="media">
+                              <a class="media-left media-middle" href="#">
+                                  <%= image_tag "img4.jpg", alt: "", class: "img-circle", style: "width: 80px; height: 80px;"%>
+                              </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading text-uppercase">Next Date</h4>
+                                  <span class="text-muted">Allie Ward</span>
+                                  <div class="s-l"><i class="icon-arrow-right"></i> <a href="#" class="">Friday</a></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div id="heart" class="tab-pane">
+                          <div class="media fav-list">
+                              <a class="media-left media-middle" href="#">
+                                  <%= image_tag "bodega.jpg", class: "img-circle", alt: "", style: "width: 80px; height: 80px;" %>
+                              </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading text-uppercase">Bodega Wine Bar</h4>
+                                  <div class="text-muted space-i">
+                                      <span><i class="fa fa-map-marker"></i>1447 Boradway </span></br>
+                                      <span>Santa Monica</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <ul class="nav nav-tabs nav-justified">
+                  <li class="active">
+                      <a data-toggle="tab" href="#clock">
+                          <i class="icon-clock"></i>
+                      </a>
+                  </li>
+                  <li class="">
+                      <a data-toggle="tab" href="#heart">
+                          <i class="icon-heart"></i>
+                      </a>
+                  </li>
+
+              </ul>
+
+          </section>
+
+          <section class="panel">
+              <header class="panel-heading">
+                Weekend Forecast For Outdoor Activity
+              </header>
+              <div class="weather-wallpaper">
+                  <%= image_tag "weather-1.jpg", alt: "" %>
+                  <div class="w-location">
+                      <i class="slicon-weather_downpour_fullmoon"></i>
+                      <span class="degree">68 </span> <span> F Santa Monica</span>
+                  </div>
+              </div>
+              <div class="panel-body">
+                  <ul class="weather-list">
+                      <li class="active">
+                          <h5>Mon</h5>
+                          <i class="slicon-weather_downpour_fullmoon"></i>
+                          <div class="degree">13</div>
+                      </li>
+                      <li>
+                          <h5>Tue</h5>
+                          <i class="slicon-weather_tempest_fullmoon"></i>
+                          <div class="degree">10</div>
+                      </li>
+                      <li>
+                          <h5>Wed</h5>
+                          <i class="slicon-weather_snow_halfmoon"></i>
+                          <div class="degree">17</div>
+                      </li>
+                  </ul>
+              </div>
+          </section>
+
+
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div id="c-slide" class="carousel slide auto panel-body news-c">
+                    <ol class="carousel-indicators out">
+                        <li class="active" data-slide-to="0" data-target="#c-slide"></li>
+                        <li class="" data-slide-to="1" data-target="#c-slide"></li>
+                        <li data-slide-to="2" data-target="#c-slide"></li>
+                    </ol>
+                    <div class="carousel-inner ">
+                        <div class="item active">
+                            <div class="media">
+                                <a class="media-left media-middle" href="#">
+                                    <%= image_tag "blog.jpg", alt: "", style: "width: 80px; height: 80px;", class: "img-circle" %>
+                                </a>
+                                <div class="media-body">
+                                    <p>Latest Blog Post</p>
+                                    <h4 class="media-heading text-uppercase">
+                                        <a href="#" class="green-color">Why You Shouldn't Invite People Over On First Date</a>
+                                    </h4>
+                                    <p>Sure, Netflix and chill is always a good idea, but not for online dating.</p>
+                                </div>
+                                <div class="media-right n-comments">
+                                    <div class="text-center">
+                                        <strong>2</strong>
+                                        <span>Comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="media">
+                                <a class="media-left media-middle" href="#">
+                                  <%= image_tag "broad.jpg", alt: "", style: "width: 80px; height: 80px;", class: "img-circle" %>
+                                </a>
+                                <div class="media-body">
+                                    <p>Latest Blog Post</p>
+                                    <h4 class="media-heading text-uppercase ">
+                                        <a href="#" class="green-color">10 Things to do in LA this week</a>
+                                    </h4>
+                                    <p>Tired of boring hapy hour dates? Try our weekly updated list for date ideas.</p>
+                                </div>
+                                <div class="media-right n-comments">
+                                    <div class="text-center">
+                                        <strong>2</strong>
+                                        <span>Comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a data-slide="prev" href="#c-slide" class="left carousel-control">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a data-slide="next" href="#c-slide" class="right carousel-control">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="k-avatar">
+                                <%= image_tag "sushi.jpg", alt: "" %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel-body text-center">
+                                <div class="k-item">
+                                    01/14
+                                </div>
+                                <div class="k-info">
+                                    <h2>Sushi Nozawa</h2>
+                                    <p>
+                                      Review of our latest favortie place to go in Los Angeles.
+                                    </p>
+                                </div>
+                                <a href="#" class="btn btn-dark text-uppercase">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+  </div>
 </div>
