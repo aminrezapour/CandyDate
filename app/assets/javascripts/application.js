@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery-ui
-//= require_tree ../../../vendor/assets/slicklab/init
+//= require turbolinks
+//= require_tree .
 
 $(document).ready(function() {
 
